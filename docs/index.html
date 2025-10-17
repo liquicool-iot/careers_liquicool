@@ -85,6 +85,51 @@
             width: auto;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
         .language-switcher {
             display: flex;
             gap: 8px;
@@ -99,6 +144,8 @@
             transition: all 0.3s ease;
             font-size: 14px;
             color: var(--text-light);
+            min-width: 60px;
+            text-align: center;
         }
 
         .lang-btn:hover {
@@ -453,10 +500,15 @@
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
+            display: block;
         }
 
         .contact-card a:hover {
             text-decoration: underline;
+        }
+
+        .contact-card p {
+            color: var(--text-light);
         }
 
         /* Footer */
@@ -503,6 +555,25 @@
         @media (max-width: 768px) {
             nav {
                 padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+
+            .nav-right {
+                width: 100%;
+                margin-top: 15px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .language-switcher {
+                justify-content: center;
             }
 
             .hero {
@@ -569,10 +640,18 @@
             <a href="https://www.liquicool.hk" class="logo-header" aria-label="返回立冷科技首页">
                 <img src="../logo.svg" alt="立冷科技" width="50" height="50">
             </a>
-            <div class="language-switcher">
-                <button class="lang-btn" data-lang="zh-CN">简体</button>
-                <button class="lang-btn" data-lang="zh-TW">繁體</button>
-                <button class="lang-btn" data-lang="en">EN</button>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="#about" data-i18n="nav-about">关于我们</a></li>
+                    <li><a href="#culture" data-i18n="nav-culture">团队文化</a></li>
+                    <li><a href="#positions" data-i18n="nav-positions">招聘职位</a></li>
+                    <li><a href="#contact" data-i18n="nav-contact">联系我们</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button class="lang-btn" data-lang="zh-CN">简体</button>
+                    <button class="lang-btn" data-lang="zh-TW">繁體</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -590,22 +669,22 @@
     <section id="about">
         <div class="container">
             <h2 class="section-title" data-i18n="about-title">关于立冷科技</h2>
-            <p class="section-subtitle" data-i18n="about-subtitle">由香港理工大学王赞凯教授团队创立，专注于数据中心液冷解决方案的创新科技公司</p>
+            <p class="section-subtitle" data-i18n="about-subtitle">由香港理工大学协理副校长兼研究生院院长王钻开教授领衔创立，核心团队汇聚了来自香港理工大学、香港城市大学、北京大学等国际知名高校的十余位博士及科研人才</p>
             <div class="about-grid">
                 <div class="about-card">
                     <div class="about-icon">🏆</div>
                     <h3 data-i18n="about-card1-title">科研实力</h3>
-                    <p data-i18n="about-card1-desc">多项国际奖项认可，包括日本传热学纪念奖、德国跨界基金会科学突破奖等，拥有顶尖的技术研发团队</p>
+                    <p data-i18n="about-card1-desc">团队成果发表于《Nature》《Science》等顶级期刊，荣获日本传热学纪念奖、德国跨界基金会科学突破奖等多项国际奖项</p>
                 </div>
                 <div class="about-card">
                     <div class="about-icon">💡</div>
                     <h3 data-i18n="about-card2-title">创新技术</h3>
-                    <p data-i18n="about-card2-desc">独创结构热铠甲技术、液冷系统集成和AI智能监控系统，实现PUE<1.06的超高能效</p>
+                    <p data-i18n="about-card2-desc">结合人工智能与物联网等前沿技术，独创结构热铠甲技术、液冷系统集成和AI智能监控系统，为全球数据中心提供高效、可靠、绿色的液冷解决方案</p>
                 </div>
                 <div class="about-card">
                     <div class="about-icon">🌱</div>
-                    <h3 data-i18n="about-card3-title">绿色使命</h3>
-                    <p data-i18n="about-card3-desc">致力于为客户提供高效节能的热管理技术，助力数据中心实现低碳、高效的可持续发展</p>
+                    <h3 data-i18n="about-card3-title">资源支撑</h3>
+                    <p data-i18n="about-card3-desc">获得香港政府首批"Raise+计划"6650万港币重点资助，具备坚实的资源支撑与产业化前景</p>
                 </div>
             </div>
         </div>
@@ -641,106 +720,126 @@
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section id="benefits">
-        <div class="container">
-            <h2 class="section-title" data-i18n="benefits-title">薪酬福利</h2>
-            <p class="section-subtitle" data-i18n="benefits-subtitle">我们提供具有竞争力的薪酬待遇和全面的福利保障</p>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">💰</div>
-                    <h3 data-i18n="benefit1-title">具竞争力薪酬</h3>
-                    <p data-i18n="benefit1-desc">行业领先的薪资水平，年度绩效奖金，股权激励计划</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🏥</div>
-                    <h3 data-i18n="benefit2-title">完善医疗保障</h3>
-                    <p data-i18n="benefit2-desc">全面医疗保险，定期健康体检，员工及家属保障</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">📚</div>
-                    <h3 data-i18n="benefit3-title">学习发展</h3>
-                    <p data-i18n="benefit3-desc">专业培训机会，行业会议参与，学历提升支持</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">⏰</div>
-                    <h3 data-i18n="benefit4-title">弹性工作</h3>
-                    <p data-i18n="benefit4-desc">灵活的工作时间，远程办公选项，带薪年假</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🎯</div>
-                    <h3 data-i18n="benefit5-title">职业发展</h3>
-                    <p data-i18n="benefit5-desc">清晰的晋升通道，导师指导计划，跨部门学习机会</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🎉</div>
-                    <h3 data-i18n="benefit6-title">团队活动</h3>
-                    <p data-i18n="benefit6-desc">定期团建活动，节日福利，舒适的办公环境</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Positions Section -->
     <section id="positions">
         <div class="container">
             <h2 class="section-title" data-i18n="positions-title">热招职位</h2>
             <p class="section-subtitle" data-i18n="positions-subtitle">寻找与我们志同道合的你</p>
+            <div class="deadline-notice" style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; margin-bottom: 30px; border-radius: 8px;">
+                <p style="margin: 0; color: #856404; font-size: 16px;"><strong data-i18n="deadline-notice">📢 职位投递截止日期：11月30日，招满即止</strong></p>
+            </div>
             <div class="positions-list">
                 <div class="position-card">
                     <div class="position-header">
-                        <h3 class="position-title" data-i18n="job1-title">热管理系统工程师</h3>
+                        <h3 class="position-title" data-i18n="job1-title">液冷系统架构工程师</h3>
                         <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
                     </div>
                     <div class="position-meta">
-                        <span data-i18n="job1-location">香港</span>
-                        <span data-i18n="job1-exp">3-5年经验</span>
-                        <span data-i18n="job1-dept">研发部</span>
+                        <span data-i18n="job1-location">香港/深圳</span>
+                        <span data-i18n="job1-exp">3年以上经验</span>
+                        <span data-i18n="job1-salary">年薪20-50W</span>
                     </div>
-                    <p class="position-desc" data-i18n="job1-desc">负责液冷系统设计与优化，参与数据中心热管理解决方案研发，与团队共同推进技术创新。</p>
-                    <button class="apply-btn" onclick="applyJob('热管理系统工程师')" data-i18n="apply-btn">立即申请</button>
+                    <p class="position-desc" data-i18n="job1-desc">负责搭建并测试服务器级/机柜级液冷系统，进行部件选型（快接头、管路、传感器、阀门、CDU等），管理产品物料及供应商，进行产品及部件测试，编写产品化文档，支持知识产权建设。</p>
+                    <details style="margin-top: 15px;">
+                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
+                        <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
+                            <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
+                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n="job1-requirements">
+                                <li>本科及以上学历，热能与动力工程、化工、暖通、制冷等相关专业</li>
+                                <li>3年以上液冷系统或服务器散热设计经验</li>
+                                <li>熟悉IDC机柜、CDU、冷板及配套系统</li>
+                                <li>精通传热、热工、流体基本理论，能独立完成产品热性能、流动性能计算</li>
+                                <li>动手能力强，可独立进行测试系统搭建</li>
+                                <li>有数据中心液冷从业经验、具备跨学科协调能力者优先</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <button class="apply-btn" onclick="applyJob('液冷系统架构工程师')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
                 <div class="position-card">
                     <div class="position-header">
-                        <h3 class="position-title" data-i18n="job3-title">销售工程师</h3>
+                        <h3 class="position-title" data-i18n="job2-title">热设计工程师</h3>
+                        <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
+                    </div>
+                    <div class="position-meta">
+                        <span data-i18n="job2-location">香港/深圳</span>
+                        <span data-i18n="job2-exp">3年以上经验</span>
+                        <span data-i18n="job2-salary">年薪20-50W</span>
+                    </div>
+                    <p class="position-desc" data-i18n="job2-desc">负责单相/两相冷板的流动性能、换热性能测试，开展冷板可靠性检测和寿命测试，熟悉CFD计算，进行液冷产品数值模拟及实验验证，设计和实施液冷系统性能评估实验方案。</p>
+                    <details style="margin-top: 15px;">
+                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
+                        <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
+                            <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
+                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n="job2-requirements">
+                                <li>机械工程、热工程、流体力学或相关领域的本科及以上学历</li>
+                                <li>至少3年液冷实验测试经验</li>
+                                <li>熟练掌握流动/换热性能测试方法和可靠性检测工具</li>
+                                <li>具有芯片液冷项目经验者优先</li>
+                                <li>强实验动手能力和问题解决技能</li>
+                                <li>熟悉数值模拟工具（如ANSYS或COMSOL）</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <button class="apply-btn" onclick="applyJob('热设计工程师')" data-i18n="apply-btn">立即申请</button>
+                </div>
+
+                <div class="position-card">
+                    <div class="position-header">
+                        <h3 class="position-title" data-i18n="job3-title">热仿真工程师</h3>
                         <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
                     </div>
                     <div class="position-meta">
                         <span data-i18n="job3-location">香港/深圳</span>
-                        <span data-i18n="job3-exp">1-3年经验</span>
-                        <span data-i18n="job3-dept">销售部</span>
+                        <span data-i18n="job3-exp">3年以上经验</span>
+                        <span data-i18n="job3-salary">年薪20-50W</span>
                     </div>
-                    <p class="position-desc" data-i18n="job3-desc">开拓数据中心液冷市场，为客户提供专业的技术方案咨询和售前支持服务。</p>
-                    <button class="apply-btn" onclick="applyJob('销售工程师')" data-i18n="apply-btn">立即申请</button>
+                    <p class="position-desc" data-i18n="job3-desc">负责单相/两相液冷板设计、仿真建模，设计边界条件、物理模型，优化网格划分，分析仿真结果并提出优化建议，开展多相流和相变传热仿真，参与液冷系统整体热设计方案评估。</p>
+                    <details style="margin-top: 15px;">
+                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
+                        <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
+                            <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
+                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n="job3-requirements">
+                                <li>工程热物理、机械工程、流体力学或相关专业的硕士及以上学历</li>
+                                <li>扎实的流体力学、传热学基础</li>
+                                <li>精通ANSYS Fluent、OpenFOAM、Icepak、COMSOL或类似CFD工具</li>
+                                <li>掌握有限体积法/有限元法数学原理</li>
+                                <li>至少3年以上CFD仿真相关工作经验</li>
+                                <li>具备流动换热实验能力及经验</li>
+                                <li>加分项：具备AI、仿生优化、响应面法等优化算法开发经验</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <button class="apply-btn" onclick="applyJob('热仿真工程师')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
                 <div class="position-card">
                     <div class="position-header">
-                        <h3 class="position-title" data-i18n="job4-title">项目经理</h3>
+                        <h3 class="position-title" data-i18n="job4-title">工艺工程师</h3>
                         <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
                     </div>
                     <div class="position-meta">
-                        <span data-i18n="job4-location">香港</span>
-                        <span data-i18n="job4-exp">5年以上经验</span>
-                        <span data-i18n="job4-dept">项目管理部</span>
+                        <span data-i18n="job4-location">香港/深圳</span>
+                        <span data-i18n="job4-exp">3年以上经验</span>
+                        <span data-i18n="job4-salary">年薪20-50W</span>
                     </div>
-                    <p class="position-desc" data-i18n="job4-desc">负责液冷项目全流程管理，协调内外部资源，确保项目按时高质量交付。</p>
-                    <button class="apply-btn" onclick="applyJob('项目经理')" data-i18n="apply-btn">立即申请</button>
-                </div>
-
-                <div class="position-card">
-                    <div class="position-header">
-                        <h3 class="position-title" data-i18n="job5-title">研发实习生</h3>
-                        <span class="position-tag" data-i18n="job-tag-intern">实习</span>
-                    </div>
-                    <div class="position-meta">
-                        <span data-i18n="job5-location">香港</span>
-                        <span data-i18n="job5-exp">在校学生</span>
-                        <span data-i18n="job5-dept">研发部</span>
-                    </div>
-                    <p class="position-desc" data-i18n="job5-desc">参与液冷技术研发项目，协助工程师进行实验测试和数据分析，获得实践经验。</p>
-                    <button class="apply-btn" onclick="applyJob('研发实习生')" data-i18n="apply-btn">立即申请</button>
+                    <p class="position-desc" data-i18n="job4-desc">负责构建并优化液冷板生产工艺链，评估产业链相关设备工艺特点、精度和成本，监控液冷板组装和制造过程，制定并实施生产文档和标准操作程序（SOP）。</p>
+                    <details style="margin-top: 15px;">
+                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
+                        <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
+                            <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
+                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n="job4-requirements">
+                                <li>机械工程、材料工程、热工程或相关领域的本科及以上学历</li>
+                                <li>至少3年以上冷板生产或液冷设备制造从业经验</li>
+                                <li>熟悉冷板加工工艺链（如CNC加工、焊接、表面处理）</li>
+                                <li>熟练掌握工艺优化工具和软件</li>
+                                <li>具备强问题解决能力，能够进行故障诊断、工艺验证</li>
+                                <li>熟悉安全规范和环保要求</li>
+                            </ul>
+                        </div>
+                    </details>
+                    <button class="apply-btn" onclick="applyJob('工艺工程师')" data-i18n="apply-btn">立即申请</button>
                 </div>
             </div>
         </div>
@@ -754,13 +853,18 @@
             <div class="contact-methods">
                 <div class="contact-card">
                     <div class="contact-icon">📧</div>
-                    <h3 data-i18n="contact-email-title">邮箱</h3>
-                    <a href="mailto:yuchao.li@liquicool.hk">yuchao.li@liquicool.hk</a>
+                    <h3 data-i18n="contact-email-title">招聘邮箱</h3>
+                    <a href="mailto:hr@liquicool.hk">hr@liquicool.hk</a>
                 </div>
                 <div class="contact-card">
-                    <div class="contact-icon">🌐</div>
-                    <h3 data-i18n="contact-website-title">官网</h3>
-                    <a href="https://www.liquicool.hk" target="_blank">www.liquicool.hk</a>
+                    <div class="contact-icon">📱</div>
+                    <h3 data-i18n="contact-phone-title">联系电话 / 微信</h3>
+                    <a href="tel:+8618810776753" data-i18n="contact-phone">+86 188 1077 6753 (吴总)</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3 data-i18n="contact-address-title">地址</h3>
+                    <a href="https://www.amap.com/place/B0FFLHZASL" target="_blank" data-i18n="contact-address">深圳市南山区高新技术产业园南区粤兴一道18号香港理工大学产学研大楼</a>
                 </div>
             </div>
         </div>
@@ -773,7 +877,7 @@
                 <a href="https://www.liquicool.hk" data-i18n="footer-home">首页</a>
                 <a href="#about" data-i18n="footer-about">关于我们</a>
                 <a href="#positions" data-i18n="footer-positions">招聘职位</a>
-                <a href="mailto:yuchao.li@liquicool.hk" data-i18n="footer-contact">联系我们</a>
+                <a href="mailto:hr@liquicool.hk" data-i18n="footer-contact">联系我们</a>
             </div>
             <p class="copyright" data-i18n="copyright">© 2025 立冷科技有限公司 版权所有 | LiquiCool Technology Limited. All Rights Reserved</p>
         </div>
@@ -786,17 +890,21 @@
                 'meta-description': '立冷科技诚邀优秀人才加入。我们专注于数据中心液冷解决方案，提供具有竞争力的薪酬待遇和广阔的发展空间。',
                 'og-title': '加入我们 - 立冷科技',
                 'og-description': '立冷科技诚邀优秀人才加入。我们专注于数据中心液冷解决方案。',
+                'nav-about': '关于我们',
+                'nav-culture': '团队文化',
+                'nav-positions': '招聘职位',
+                'nav-contact': '联系我们',
                 'hero-title': '加入立冷科技，共创冷却技术新未来',
                 'hero-desc': '我们致力于推动数据中心液冷技术的革新，寻找志同道合的创新者，一起引领绿色科技浪潮',
                 'hero-cta': '查看职位',
                 'about-title': '关于立冷科技',
-                'about-subtitle': '由香港理工大学王赞凯教授团队创立，专注于数据中心液冷解决方案的创新科技公司',
+                'about-subtitle': '由香港理工大学协理副校长兼研究生院院长王钻开教授领衔创立，核心团队汇聚了来自香港理工大学、香港城市大学、北京大学等国际知名高校的十余位博士及科研人才',
                 'about-card1-title': '科研实力',
-                'about-card1-desc': '多项国际奖项认可，包括日本传热学纪念奖、德国跨界基金会科学突破奖等，拥有顶尖的技术研发团队',
+                'about-card1-desc': '团队成果发表于《Nature》《Science》等顶级期刊，荣获日本传热学纪念奖、德国跨界基金会科学突破奖等多项国际奖项',
                 'about-card2-title': '创新技术',
-                'about-card2-desc': '独创结构热铠甲技术、液冷系统集成和AI智能监控系统，实现PUE<1.06的超高能效',
-                'about-card3-title': '绿色使命',
-                'about-card3-desc': '致力于为客户提供高效节能的热管理技术，助力数据中心实现低碳、高效的可持续发展',
+                'about-card2-desc': '结合人工智能与物联网等前沿技术，独创结构热铠甲技术、液冷系统集成和AI智能监控系统，为全球数据中心提供高效、可靠、绿色的液冷解决方案',
+                'about-card3-title': '资源支撑',
+                'about-card3-desc': '获得香港政府首批"Raise+计划"6650万港币重点资助，具备坚实的资源支撑与产业化前景',
                 'culture-title': '团队文化',
                 'culture-subtitle': '我们相信优秀的团队文化是创新的源泉',
                 'value1-title': '创新驱动',
@@ -810,51 +918,56 @@
                 'benefits-title': '薪酬福利',
                 'benefits-subtitle': '我们提供具有竞争力的薪酬待遇和全面的福利保障',
                 'benefit1-title': '具竞争力薪酬',
-                'benefit1-desc': '行业领先的薪资水平，年度绩效奖金，股权激励计划',
+                'benefit1-desc': '年薪20-50万人民币，表现优异者可获股权激励，行业领先的薪资水平',
                 'benefit2-title': '完善医疗保障',
                 'benefit2-desc': '全面医疗保险，定期健康体检，员工及家属保障',
                 'benefit3-title': '学习发展',
                 'benefit3-desc': '专业培训机会，行业会议参与，学历提升支持',
-                'benefit4-title': '弹性工作',
-                'benefit4-desc': '灵活的工作时间，远程办公选项，带薪年假',
+                'benefit4-title': '双城办公',
+                'benefit4-desc': '香港与深圳双地办公，支持跨境协作与个人能力提升，灵活的工作时间',
                 'benefit5-title': '职业发展',
                 'benefit5-desc': '清晰的晋升通道，导师指导计划，跨部门学习机会',
                 'benefit6-title': '团队活动',
                 'benefit6-desc': '定期团建活动，节日福利，舒适的办公环境',
                 'positions-title': '热招职位',
                 'positions-subtitle': '寻找与我们志同道合的你',
-                'job1-title': '热管理系统工程师',
-                'job1-location': '香港',
-                'job1-exp': '3-5年经验',
-                'job1-dept': '研发部',
-                'job1-desc': '负责液冷系统设计与优化，参与数据中心热管理解决方案研发，与团队共同推进技术创新。',
-                'job2-title': 'AI算法工程师',
-                'job2-location': '香港',
-                'job2-exp': '2-4年经验',
-                'job2-dept': '技术部',
-                'job2-desc': '开发AI智能监控系统，优化温控管理算法，提升系统自动化和智能化水平。',
-                'job3-title': '销售工程师',
+                'deadline-notice': '📢 职位投递截止日期：11月30日，招满即止',
+                'job1-title': '液冷系统架构工程师',
+                'job1-location': '香港/深圳',
+                'job1-exp': '3年以上经验',
+                'job1-salary': '年薪20-50W',
+                'job1-desc': '负责搭建并测试服务器级/机柜级液冷系统，进行部件选型（快接头、管路、传感器、阀门、CDU等），管理产品物料及供应商，进行产品及部件测试，编写产品化文档，支持知识产权建设。',
+                'job2-title': '热设计工程师',
+                'job2-location': '香港/深圳',
+                'job2-exp': '3年以上经验',
+                'job2-salary': '年薪20-50W',
+                'job2-desc': '负责单相/两相冷板的流动性能、换热性能测试，开展冷板可靠性检测和寿命测试，熟悉CFD计算，进行液冷产品数值模拟及实验验证，设计和实施液冷系统性能评估实验方案。',
+                'job3-title': '热仿真工程师',
                 'job3-location': '香港/深圳',
-                'job3-exp': '1-3年经验',
-                'job3-dept': '销售部',
-                'job3-desc': '开拓数据中心液冷市场，为客户提供专业的技术方案咨询和售前支持服务。',
-                'job4-title': '项目经理',
-                'job4-location': '香港',
-                'job4-exp': '5年以上经验',
-                'job4-dept': '项目管理部',
-                'job4-desc': '负责液冷项目全流程管理，协调内外部资源，确保项目按时高质量交付。',
-                'job5-title': '研发实习生',
-                'job5-location': '香港',
-                'job5-exp': '在校学生',
-                'job5-dept': '研发部',
-                'job5-desc': '参与液冷技术研发项目，协助工程师进行实验测试和数据分析，获得实践经验。',
+                'job3-exp': '3年以上经验',
+                'job3-salary': '年薪20-50W',
+                'job3-desc': '负责单相/两相液冷板设计、仿真建模，设计边界条件、物理模型，优化网格划分，分析仿真结果并提出优化建议，开展多相流和相变传热仿真，参与液冷系统整体热设计方案评估。',
+                'job4-title': '工艺工程师',
+                'job4-location': '香港/深圳',
+                'job4-exp': '3年以上经验',
+                'job4-salary': '年薪20-50W',
+                'job4-desc': '负责构建并优化液冷板生产工艺链，评估产业链相关设备工艺特点、精度和成本，监控液冷板组装和制造过程，制定并实施生产文档和标准操作程序（SOP）。',
+                'job-details': '查看详细要求',
+                'job-requirements': '任职要求：',
+                'job1-requirements': '',
+                'job2-requirements': '',
+                'job3-requirements': '',
+                'job4-requirements': '',
                 'job-tag-fulltime': '全职',
                 'job-tag-intern': '实习',
                 'apply-btn': '立即申请',
                 'contact-title': '联系我们',
                 'contact-subtitle': '期待与您的交流，欢迎投递简历或咨询职位信息',
-                'contact-email-title': '邮箱',
-                'contact-website-title': '官网',
+                'contact-email-title': '招聘邮箱',
+                'contact-phone-title': '联系电话 / 微信',
+                'contact-phone': '+86 188 1077 6753 (吴总)',
+                'contact-address-title': '地址',
+                'contact-address': '深圳市南山区高新技术产业园南区粤兴一道18号香港理工大学产学研大楼',
                 'footer-home': '首页',
                 'footer-about': '关于我们',
                 'footer-positions': '招聘职位',
@@ -866,17 +979,21 @@
                 'meta-description': '立冷科技誠邀優秀人才加入。我們專注於數據中心液冷解決方案，提供具有競爭力的薪酬待遇和廣闊的發展空間。',
                 'og-title': '加入我們 - 立冷科技',
                 'og-description': '立冷科技誠邀優秀人才加入。我們專注於數據中心液冷解決方案。',
+                'nav-about': '關於我們',
+                'nav-culture': '團隊文化',
+                'nav-positions': '招聘職位',
+                'nav-contact': '聯繫我們',
                 'hero-title': '加入立冷科技，共創冷卻技術新未來',
                 'hero-desc': '我們致力於推動數據中心液冷技術的革新，尋找志同道合的創新者，一起引領綠色科技浪潮',
                 'hero-cta': '查看職位',
                 'about-title': '關於立冷科技',
-                'about-subtitle': '由香港理工大學王贊凱教授團隊創立，專注於數據中心液冷解決方案的創新科技公司',
+                'about-subtitle': '由香港理工大學協理副校長兼研究生院院長王鑽開教授領銜創立，核心團隊匯聚了來自香港理工大學、香港城市大學、北京大學等國際知名高校的十餘位博士及科研人才',
                 'about-card1-title': '科研實力',
-                'about-card1-desc': '多項國際獎項認可，包括日本傳熱學紀念獎、德國跨界基金會科學突破獎等，擁有頂尖的技術研發團隊',
+                'about-card1-desc': '團隊成果發表於《Nature》《Science》等頂級期刊，榮獲日本傳熱學紀念獎、德國跨界基金會科學突破獎等多項國際獎項',
                 'about-card2-title': '創新技術',
-                'about-card2-desc': '獨創結構熱鎧甲技術、液冷系統集成和AI智能監控系統，實現PUE<1.06的超高能效',
-                'about-card3-title': '綠色使命',
-                'about-card3-desc': '致力於為客戶提供高效節能的熱管理技術，助力數據中心實現低碳、高效的可持續發展',
+                'about-card2-desc': '結合人工智能與物聯網等前沿技術，獨創結構熱鎧甲技術、液冷系統集成和AI智能監控系統，為全球數據中心提供高效、可靠、綠色的液冷解決方案',
+                'about-card3-title': '資源支撐',
+                'about-card3-desc': '獲得香港政府首批"Raise+計劃"6650萬港幣重點資助，具備堅實的資源支撐與產業化前景',
                 'culture-title': '團隊文化',
                 'culture-subtitle': '我們相信優秀的團隊文化是創新的源泉',
                 'value1-title': '創新驅動',
@@ -890,51 +1007,56 @@
                 'benefits-title': '薪酬福利',
                 'benefits-subtitle': '我們提供具有競爭力的薪酬待遇和全面的福利保障',
                 'benefit1-title': '具競爭力薪酬',
-                'benefit1-desc': '行業領先的薪資水平，年度績效獎金，股權激勵計劃',
+                'benefit1-desc': '年薪20-50萬人民幣，表現優異者可獲股權激勵，行業領先的薪資水平',
                 'benefit2-title': '完善醫療保障',
                 'benefit2-desc': '全面醫療保險，定期健康體檢，員工及家屬保障',
                 'benefit3-title': '學習發展',
                 'benefit3-desc': '專業培訓機會，行業會議參與，學歷提升支持',
-                'benefit4-title': '彈性工作',
-                'benefit4-desc': '靈活的工作時間，遠程辦公選項，帶薪年假',
+                'benefit4-title': '雙城辦公',
+                'benefit4-desc': '香港與深圳雙地辦公，支持跨境協作與個人能力提升，靈活的工作時間',
                 'benefit5-title': '職業發展',
                 'benefit5-desc': '清晰的晉升通道，導師指導計劃，跨部門學習機會',
                 'benefit6-title': '團隊活動',
                 'benefit6-desc': '定期團建活動，節日福利，舒適的辦公環境',
                 'positions-title': '熱招職位',
                 'positions-subtitle': '尋找與我們志同道合的你',
-                'job1-title': '熱管理系統工程師',
-                'job1-location': '香港',
-                'job1-exp': '3-5年經驗',
-                'job1-dept': '研發部',
-                'job1-desc': '負責液冷系統設計與優化，參與數據中心熱管理解決方案研發，與團隊共同推進技術創新。',
-                'job2-title': 'AI算法工程師',
-                'job2-location': '香港',
-                'job2-exp': '2-4年經驗',
-                'job2-dept': '技術部',
-                'job2-desc': '開發AI智能監控系統，優化溫控管理算法，提升系統自動化和智能化水平。',
-                'job3-title': '銷售工程師',
+                'deadline-notice': '📢 職位投遞截止日期：11月30日，招滿即止',
+                'job1-title': '液冷系統架構工程師',
+                'job1-location': '香港/深圳',
+                'job1-exp': '3年以上經驗',
+                'job1-salary': '年薪20-50W',
+                'job1-desc': '負責搭建並測試服務器級/機櫃級液冷系統，進行部件選型（快接頭、管路、傳感器、閥門、CDU等），管理產品物料及供應商，進行產品及部件測試，編寫產品化文檔，支持知識產權建設。',
+                'job2-title': '熱設計工程師',
+                'job2-location': '香港/深圳',
+                'job2-exp': '3年以上經驗',
+                'job2-salary': '年薪20-50W',
+                'job2-desc': '負責單相/兩相冷板的流動性能、換熱性能測試，開展冷板可靠性檢測和壽命測試，熟悉CFD計算，進行液冷產品數值模擬及實驗驗證，設計和實施液冷系統性能評估實驗方案。',
+                'job3-title': '熱仿真工程師',
                 'job3-location': '香港/深圳',
-                'job3-exp': '1-3年經驗',
-                'job3-dept': '銷售部',
-                'job3-desc': '開拓數據中心液冷市場，為客戶提供專業的技術方案諮詢和售前支持服務。',
-                'job4-title': '項目經理',
-                'job4-location': '香港',
-                'job4-exp': '5年以上經驗',
-                'job4-dept': '項目管理部',
-                'job4-desc': '負責液冷項目全流程管理，協調內外部資源，確保項目按時高質量交付。',
-                'job5-title': '研發實習生',
-                'job5-location': '香港',
-                'job5-exp': '在校學生',
-                'job5-dept': '研發部',
-                'job5-desc': '參與液冷技術研發項目，協助工程師進行實驗測試和數據分析，獲得實踐經驗。',
+                'job3-exp': '3年以上經驗',
+                'job3-salary': '年薪20-50W',
+                'job3-desc': '負責單相/兩相液冷板設計、仿真建模，設計邊界條件、物理模型，優化網格劃分，分析仿真結果並提出優化建議，開展多相流和相變傳熱仿真，參與液冷系統整體熱設計方案評估。',
+                'job4-title': '工藝工程師',
+                'job4-location': '香港/深圳',
+                'job4-exp': '3年以上經驗',
+                'job4-salary': '年薪20-50W',
+                'job4-desc': '負責構建並優化液冷板生產工藝鏈，評估產業鏈相關設備工藝特點、精度和成本，監控液冷板組裝和製造過程，制定並實施生產文檔和標準操作程序（SOP）。',
+                'job-details': '查看詳細要求',
+                'job-requirements': '任職要求：',
+                'job1-requirements': '',
+                'job2-requirements': '',
+                'job3-requirements': '',
+                'job4-requirements': '',
                 'job-tag-fulltime': '全職',
                 'job-tag-intern': '實習',
                 'apply-btn': '立即申請',
                 'contact-title': '聯繫我們',
                 'contact-subtitle': '期待與您的交流，歡迎投遞簡歷或諮詢職位信息',
-                'contact-email-title': '郵箱',
-                'contact-website-title': '官網',
+                'contact-email-title': '招聘郵箱',
+                'contact-phone-title': '聯繫電話 / 微信',
+                'contact-phone': '+86 188 1077 6753 (吳總)',
+                'contact-address-title': '地址',
+                'contact-address': '深圳市南山區高新技術產業園南區粵興一道18號香港理工大學產學研大樓',
                 'footer-home': '首頁',
                 'footer-about': '關於我們',
                 'footer-positions': '招聘職位',
@@ -946,17 +1068,21 @@
                 'meta-description': 'LiquiCool Technology is looking for talented individuals to join our team. We specialize in data center liquid cooling solutions with competitive compensation and great career opportunities.',
                 'og-title': 'Join Us - LiquiCool Technology',
                 'og-description': 'LiquiCool Technology is looking for talented individuals. We specialize in data center liquid cooling solutions.',
+                'nav-about': 'About Us',
+                'nav-culture': 'Team Culture',
+                'nav-positions': 'Positions',
+                'nav-contact': 'Contact',
                 'hero-title': 'Join LiquiCool, Shape the Future of Cooling Technology',
                 'hero-desc': 'We are committed to revolutionizing data center liquid cooling technology, seeking like-minded innovators to lead the green tech revolution together',
                 'hero-cta': 'View Positions',
                 'about-title': 'About LiquiCool',
-                'about-subtitle': 'Founded by Professor Wang Zuankai\'s team from Hong Kong Polytechnic University, an innovative tech company specializing in data center liquid cooling solutions',
+                'about-subtitle': 'Founded by Professor Wang Zuankai, Associate Vice President and Dean of Graduate School at Hong Kong Polytechnic University. The core team comprises over ten PhDs and researchers from renowned universities including PolyU, CityU Hong Kong, and Peking University',
                 'about-card1-title': 'Research Excellence',
-                'about-card1-desc': 'Multiple international awards including Japan Heat Science Memorial Award, German Cross-Border Foundation Science Breakthrough Prize, with top-tier R&D team',
+                'about-card1-desc': 'Research published in top journals including Nature and Science. Awarded Japan Heat Science Memorial Award, German Cross-Border Foundation Science Breakthrough Prize, and other international honors',
                 'about-card2-title': 'Innovative Technology',
-                'about-card2-desc': 'Proprietary Structural Thermal Armor technology, liquid cooling system integration, and AI smart monitoring system, achieving ultra-high efficiency with PUE<1.06',
-                'about-card3-title': 'Green Mission',
-                'about-card3-desc': 'Committed to providing customers with energy-efficient thermal management technology, helping data centers achieve low-carbon, high-efficiency sustainable development',
+                'about-card2-desc': 'Combining AI and IoT technologies with proprietary Structural Thermal Armor, liquid cooling system integration, and AI smart monitoring to provide efficient, reliable, and green cooling solutions globally',
+                'about-card3-title': 'Resource Support',
+                'about-card3-desc': 'Received HK$66.5 million funding from Hong Kong Government\'s first batch of "Raise+" program, providing solid resources and commercialization prospects',
                 'culture-title': 'Team Culture',
                 'culture-subtitle': 'We believe excellent team culture is the source of innovation',
                 'value1-title': 'Innovation Driven',
@@ -970,51 +1096,56 @@
                 'benefits-title': 'Compensation & Benefits',
                 'benefits-subtitle': 'We offer competitive compensation and comprehensive benefits',
                 'benefit1-title': 'Competitive Salary',
-                'benefit1-desc': 'Industry-leading salary, annual performance bonuses, equity incentive plans',
+                'benefit1-desc': 'Annual salary RMB 200K-500K, equity incentives for outstanding performers, industry-leading compensation',
                 'benefit2-title': 'Comprehensive Healthcare',
                 'benefit2-desc': 'Full medical insurance, regular health check-ups, coverage for employees and families',
                 'benefit3-title': 'Learning & Development',
                 'benefit3-desc': 'Professional training opportunities, industry conference participation, educational advancement support',
-                'benefit4-title': 'Flexible Work',
-                'benefit4-desc': 'Flexible working hours, remote work options, paid annual leave',
+                'benefit4-title': 'Dual-City Office',
+                'benefit4-desc': 'Work in Hong Kong and Shenzhen, supporting cross-border collaboration and personal development, flexible working hours',
                 'benefit5-title': 'Career Development',
                 'benefit5-desc': 'Clear promotion pathways, mentorship programs, cross-department learning opportunities',
                 'benefit6-title': 'Team Activities',
                 'benefit6-desc': 'Regular team building activities, holiday benefits, comfortable office environment',
                 'positions-title': 'Open Positions',
                 'positions-subtitle': 'Looking for talented individuals who share our vision',
-                'job1-title': 'Thermal Management System Engineer',
-                'job1-location': 'Hong Kong',
-                'job1-exp': '3-5 years experience',
-                'job1-dept': 'R&D Department',
-                'job1-desc': 'Responsible for liquid cooling system design and optimization, participating in data center thermal management solution R&D, driving technical innovation with the team.',
-                'job2-title': 'AI Algorithm Engineer',
-                'job2-location': 'Hong Kong',
-                'job2-exp': '2-4 years experience',
-                'job2-dept': 'Technology Department',
-                'job2-desc': 'Develop AI smart monitoring systems, optimize temperature control algorithms, enhance system automation and intelligence.',
-                'job3-title': 'Sales Engineer',
+                'deadline-notice': '📢 Application deadline: November 30th, positions filled on a rolling basis',
+                'job1-title': 'Liquid Cooling System Architecture Engineer',
+                'job1-location': 'Hong Kong/Shenzhen',
+                'job1-exp': '3+ years experience',
+                'job1-salary': 'Annual salary RMB 200K-500K',
+                'job1-desc': 'Build and test server-level/rack-level liquid cooling systems, component selection (quick connectors, piping, sensors, valves, CDU, etc.), manage product materials and suppliers, conduct product and component testing, write product documentation, support IP development.',
+                'job2-title': 'Thermal Design Engineer',
+                'job2-location': 'Hong Kong/Shenzhen',
+                'job2-exp': '3+ years experience',
+                'job2-salary': 'Annual salary RMB 200K-500K',
+                'job2-desc': 'Test flow and heat transfer performance of single-phase/two-phase cold plates, conduct reliability and lifetime testing, proficient in CFD calculations, perform numerical simulation and experimental verification, design and implement liquid cooling system performance evaluation experiments.',
+                'job3-title': 'Thermal Simulation Engineer',
                 'job3-location': 'Hong Kong/Shenzhen',
-                'job3-exp': '1-3 years experience',
-                'job3-dept': 'Sales Department',
-                'job3-desc': 'Develop data center liquid cooling market, provide professional technical solution consulting and pre-sales support services to customers.',
-                'job4-title': 'Project Manager',
-                'job4-location': 'Hong Kong',
-                'job4-exp': '5+ years experience',
-                'job4-dept': 'Project Management',
-                'job4-desc': 'Manage full lifecycle of liquid cooling projects, coordinate internal and external resources, ensure projects are delivered on time with high quality.',
-                'job5-title': 'R&D Intern',
-                'job5-location': 'Hong Kong',
-                'job5-exp': 'Current Student',
-                'job5-dept': 'R&D Department',
-                'job5-desc': 'Participate in liquid cooling technology R&D projects, assist engineers with experimental testing and data analysis, gain practical experience.',
+                'job3-exp': '3+ years experience',
+                'job3-salary': 'Annual salary RMB 200K-500K',
+                'job3-desc': 'Design and model single-phase/two-phase liquid cooling plates, set boundary conditions and physical models, optimize meshing, analyze simulation results and propose optimization suggestions, conduct multiphase flow and phase change heat transfer simulations, participate in overall thermal design evaluation.',
+                'job4-title': 'Process Engineer',
+                'job4-location': 'Hong Kong/Shenzhen',
+                'job4-exp': '3+ years experience',
+                'job4-salary': 'Annual salary RMB 200K-500K',
+                'job4-desc': 'Build and optimize liquid cooling plate production process chain, evaluate equipment characteristics, accuracy and costs, monitor assembly and manufacturing processes, develop and implement production documentation and SOPs.',
+                'job-details': 'View detailed requirements',
+                'job-requirements': 'Requirements:',
+                'job1-requirements': '',
+                'job2-requirements': '',
+                'job3-requirements': '',
+                'job4-requirements': '',
                 'job-tag-fulltime': 'Full-time',
                 'job-tag-intern': 'Internship',
                 'apply-btn': 'Apply Now',
                 'contact-title': 'Contact Us',
                 'contact-subtitle': 'Looking forward to hearing from you. Welcome to submit your resume or inquire about positions',
-                'contact-email-title': 'Email',
-                'contact-website-title': 'Website',
+                'contact-email-title': 'Recruitment Email',
+                'contact-phone-title': 'Phone / WeChat',
+                'contact-phone': '+86 188 1077 6753 (Dr. Wu)',
+                'contact-address-title': 'Address',
+                'contact-address': 'PolyU Industry-University-Research Building, No.18 Yuexing 1st Road, South Zone, Hi-Tech Industrial Park, Nanshan District, Shenzhen',
                 'footer-home': 'Home',
                 'footer-about': 'About Us',
                 'footer-positions': 'Positions',
@@ -1061,7 +1192,7 @@
         }
 
         function applyJob(jobTitle) {
-            const email = 'yuchao.li@liquicool.hk';
+            const email = 'hr@liquicool.hk';
             const subject = encodeURIComponent(`应聘申请 - ${jobTitle}`);
             const body = encodeURIComponent(`您好，\n\n我对"${jobTitle}"职位很感兴趣，现附上我的简历供您查阅。\n\n期待您的回复。\n\n此致\n敬礼`);
             window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;

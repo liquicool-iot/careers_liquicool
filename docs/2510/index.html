@@ -521,12 +521,46 @@
             border-radius: 12px;
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .position-card:hover {
             box-shadow: var(--shadow-md);
             border-color: var(--primary-color);
+        }
+
+        .position-main {
+            cursor: pointer;
+        }
+
+        .position-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, margin-top 0.4s ease-out, opacity 0.4s ease-out;
+            opacity: 0;
+        }
+
+        .position-details.expanded {
+            max-height: 1000px;
+            margin-top: 15px;
+            opacity: 1;
+        }
+
+        .position-details-content {
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 6px;
+        }
+
+        .toggle-indicator {
+            display: inline-block;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+
+        .position-main.expanded .toggle-indicator {
+            transform: rotate(180deg);
         }
 
         .position-header {
@@ -581,11 +615,15 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
         }
 
         .apply-btn:hover {
             background-color: var(--secondary-color);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
         }
 
         /* Contact Section */
@@ -604,10 +642,20 @@
 
         .contact-card {
             background: white;
-            padding: 30px;
             border-radius: 12px;
             text-align: center;
             border: 1px solid var(--border-color);
+            text-decoration: none;
+            display: block;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
         }
 
         .contact-icon {
@@ -621,14 +669,14 @@
             color: var(--text-color);
         }
 
-        .contact-card a {
+        .contact-card .contact-link {
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
             display: block;
         }
 
-        .contact-card a:hover {
+        .contact-card:hover .contact-link {
             text-decoration: underline;
         }
 
@@ -825,19 +873,24 @@
             </div>
             <div class="positions-list">
                 <div class="position-card">
-                    <div class="position-header">
-                        <h3 class="position-title" data-i18n="job1-title">液冷系统架构工程师</h3>
-                        <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
+                    <div class="position-main" onclick="togglePositionDetails(this)">
+                        <div class="position-header">
+                            <h3 class="position-title" data-i18n="job1-title">液冷系统架构工程师</h3>
+                            <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
+                        </div>
+                        <div class="position-meta">
+                            <span data-i18n="job1-location">香港/深圳</span>
+                            <span data-i18n="job1-exp">3年以上经验</span>
+                            <span data-i18n="job1-salary">年薪20-50W</span>
+                        </div>
+                        <p class="position-desc" data-i18n="job1-desc">负责搭建并测试服务器级/机柜级液冷系统，进行部件选型（快接头、管路、传感器、阀门、CDU等），管理产品物料及供应商，进行产品及部件测试，编写产品化文档，支持知识产权建设。</p>
+                        <p style="margin-top: 12px; font-weight: 600; color: var(--primary-color); font-size: 14px;">
+                            <span data-i18n="job-details">查看详细要求</span>
+                            <span class="toggle-indicator">▼</span>
+                        </p>
                     </div>
-                    <div class="position-meta">
-                        <span data-i18n="job1-location">香港/深圳</span>
-                        <span data-i18n="job1-exp">3年以上经验</span>
-                        <span data-i18n="job1-salary">年薪20-50W</span>
-                    </div>
-                    <p class="position-desc" data-i18n="job1-desc">负责搭建并测试服务器级/机柜级液冷系统，进行部件选型（快接头、管路、传感器、阀门、CDU等），管理产品物料及供应商，进行产品及部件测试，编写产品化文档，支持知识产权建设。</p>
-                    <details style="margin-top: 15px;">
-                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
-                        <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
+                    <div class="position-details">
+                        <div class="position-details-content">
                             <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
                             <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n-html="job1-requirements">
                                 <li>本科及以上学历，热能与动力工程、化工、暖通、制冷等相关专业</li>
@@ -848,24 +901,29 @@
                                 <li>有数据中心液冷从业经验、具备跨学科协调能力者优先</li>
                             </ul>
                         </div>
-                    </details>
-                    <button class="apply-btn" onclick="applyJob('液冷系统架构工程师')" data-i18n="apply-btn">立即申请</button>
+                    </div>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('液冷系统架构工程师')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
                 <div class="position-card">
-                    <div class="position-header">
-                        <h3 class="position-title" data-i18n="job2-title">热设计工程师</h3>
-                        <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
+                    <div class="position-main" onclick="togglePositionDetails(this)">
+                        <div class="position-header">
+                            <h3 class="position-title" data-i18n="job2-title">热设计工程师</h3>
+                            <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
+                        </div>
+                        <div class="position-meta">
+                            <span data-i18n="job2-location">香港/深圳</span>
+                            <span data-i18n="job2-exp">3年以上经验</span>
+                            <span data-i18n="job2-salary">年薪20-50W</span>
+                        </div>
+                        <p class="position-desc" data-i18n="job2-desc">负责单相/两相冷板的流动性能、换热性能测试，开展冷板可靠性检测和寿命测试，熟悉CFD计算，进行液冷产品数值模拟及实验验证，设计和实施液冷系统性能评估实验方案。</p>
+                        <p style="margin-top: 12px; font-weight: 600; color: var(--primary-color); font-size: 14px;">
+                            <span data-i18n="job-details">查看详细要求</span>
+                            <span class="toggle-indicator">▼</span>
+                        </p>
                     </div>
-                    <div class="position-meta">
-                        <span data-i18n="job2-location">香港/深圳</span>
-                        <span data-i18n="job2-exp">3年以上经验</span>
-                        <span data-i18n="job2-salary">年薪20-50W</span>
-                    </div>
-                    <p class="position-desc" data-i18n="job2-desc">负责单相/两相冷板的流动性能、换热性能测试，开展冷板可靠性检测和寿命测试，熟悉CFD计算，进行液冷产品数值模拟及实验验证，设计和实施液冷系统性能评估实验方案。</p>
-                    <details style="margin-top: 15px;">
-                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
-                        <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
+                    <div class="position-details">
+                        <div class="position-details-content">
                             <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
                             <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n-html="job2-requirements">
                                 <li>机械工程、热工程、流体力学或相关领域的本科及以上学历</li>
@@ -876,24 +934,29 @@
                                 <li>熟悉数值模拟工具（如ANSYS或COMSOL）</li>
                             </ul>
                         </div>
-                    </details>
-                    <button class="apply-btn" onclick="applyJob('热设计工程师')" data-i18n="apply-btn">立即申请</button>
+                    </div>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('热设计工程师')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
                 <div class="position-card">
-                    <div class="position-header">
-                        <h3 class="position-title" data-i18n="job3-title">热仿真工程师</h3>
-                        <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
+                    <div class="position-main" onclick="togglePositionDetails(this)">
+                        <div class="position-header">
+                            <h3 class="position-title" data-i18n="job3-title">热仿真工程师</h3>
+                            <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
+                        </div>
+                        <div class="position-meta">
+                            <span data-i18n="job3-location">香港/深圳</span>
+                            <span data-i18n="job3-exp">3年以上经验</span>
+                            <span data-i18n="job3-salary">年薪20-50W</span>
+                        </div>
+                        <p class="position-desc" data-i18n="job3-desc">负责单相/两相液冷板设计、仿真建模，设计边界条件、物理模型，优化网格划分，分析仿真结果并提出优化建议，开展多相流和相变传热仿真，参与液冷系统整体热设计方案评估。</p>
+                        <p style="margin-top: 12px; font-weight: 600; color: var(--primary-color); font-size: 14px;">
+                            <span data-i18n="job-details">查看详细要求</span>
+                            <span class="toggle-indicator">▼</span>
+                        </p>
                     </div>
-                    <div class="position-meta">
-                        <span data-i18n="job3-location">香港/深圳</span>
-                        <span data-i18n="job3-exp">3年以上经验</span>
-                        <span data-i18n="job3-salary">年薪20-50W</span>
-                    </div>
-                    <p class="position-desc" data-i18n="job3-desc">负责单相/两相液冷板设计、仿真建模，设计边界条件、物理模型，优化网格划分，分析仿真结果并提出优化建议，开展多相流和相变传热仿真，参与液冷系统整体热设计方案评估。</p>
-                    <details style="margin-top: 15px;">
-                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
-                        <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
+                    <div class="position-details">
+                        <div class="position-details-content">
                             <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
                             <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n-html="job3-requirements">
                                 <li>工程热物理、机械工程、流体力学或相关专业的硕士及以上学历</li>
@@ -905,24 +968,29 @@
                                 <li>加分项：具备AI、仿生优化、响应面法等优化算法开发经验</li>
                             </ul>
                         </div>
-                    </details>
-                    <button class="apply-btn" onclick="applyJob('热仿真工程师')" data-i18n="apply-btn">立即申请</button>
+                    </div>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('热仿真工程师')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
                 <div class="position-card">
-                    <div class="position-header">
-                        <h3 class="position-title" data-i18n="job4-title">工艺工程师</h3>
-                        <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
+                    <div class="position-main" onclick="togglePositionDetails(this)">
+                        <div class="position-header">
+                            <h3 class="position-title" data-i18n="job4-title">工艺工程师</h3>
+                            <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
+                        </div>
+                        <div class="position-meta">
+                            <span data-i18n="job4-location">香港/深圳</span>
+                            <span data-i18n="job4-exp">3年以上经验</span>
+                            <span data-i18n="job4-salary">年薪20-50W</span>
+                        </div>
+                        <p class="position-desc" data-i18n="job4-desc">负责构建并优化液冷板生产工艺链，评估产业链相关设备工艺特点、精度和成本，监控液冷板组装和制造过程，制定并实施生产文档和标准操作程序（SOP）。</p>
+                        <p style="margin-top: 12px; font-weight: 600; color: var(--primary-color); font-size: 14px;">
+                            <span data-i18n="job-details">查看详细要求</span>
+                            <span class="toggle-indicator">▼</span>
+                        </p>
                     </div>
-                    <div class="position-meta">
-                        <span data-i18n="job4-location">香港/深圳</span>
-                        <span data-i18n="job4-exp">3年以上经验</span>
-                        <span data-i18n="job4-salary">年薪20-50W</span>
-                    </div>
-                    <p class="position-desc" data-i18n="job4-desc">负责构建并优化液冷板生产工艺链，评估产业链相关设备工艺特点、精度和成本，监控液冷板组装和制造过程，制定并实施生产文档和标准操作程序（SOP）。</p>
-                    <details style="margin-top: 15px;">
-                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
-                        <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
+                    <div class="position-details">
+                        <div class="position-details-content">
                             <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
                             <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n-html="job4-requirements">
                                 <li>机械工程、材料工程、热工程或相关领域的本科及以上学历</li>
@@ -933,8 +1001,8 @@
                                 <li>熟悉安全规范和环保要求</li>
                             </ul>
                         </div>
-                    </details>
-                    <button class="apply-btn" onclick="applyJob('工艺工程师')" data-i18n="apply-btn">立即申请</button>
+                    </div>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('工艺工程师')" data-i18n="apply-btn">立即申请</button>
                 </div>
             </div>
         </div>
@@ -946,21 +1014,21 @@
             <h2 class="section-title" data-i18n="contact-title">联系我们</h2>
             <p class="section-subtitle" data-i18n="contact-subtitle">期待与您的交流，欢迎投递简历或咨询职位信息</p>
             <div class="contact-methods">
-                <div class="contact-card">
+                <a href="mailto:hr@liquicool.hk" class="contact-card">
                     <div class="contact-icon">📧</div>
                     <h3 data-i18n="contact-email-title">招聘邮箱</h3>
-                    <a href="mailto:hr@liquicool.hk">hr@liquicool.hk</a>
-                </div>
-                <div class="contact-card">
+                    <span class="contact-link">hr@liquicool.hk</span>
+                </a>
+                <a href="tel:+8618810776753" class="contact-card">
                     <div class="contact-icon">📱</div>
                     <h3 data-i18n="contact-phone-title">联系电话 / 微信</h3>
-                    <a href="tel:+8618810776753" data-i18n="contact-phone">+86 188 1077 6753 (吴总)</a>
-                </div>
-                <div class="contact-card">
+                    <span class="contact-link" data-i18n="contact-phone">+86 188 1077 6753 (吴总)</span>
+                </a>
+                <a href="https://www.amap.com/place/B0FFLHZASL" target="_blank" class="contact-card">
                     <div class="contact-icon">📍</div>
                     <h3 data-i18n="contact-address-title">地址</h3>
-                    <a href="https://www.amap.com/place/B0FFLHZASL" target="_blank" data-i18n="contact-address">深圳市南山区高新技术产业园南区粤兴一道18号香港理工大学产学研大楼</a>
-                </div>
+                    <span class="contact-link" data-i18n="contact-address">香港理工大学产学研大楼(深圳)</span>
+                </a>
             </div>
         </div>
     </section>
@@ -1077,7 +1145,7 @@
                 'contact-phone-title': '联系电话 / 微信',
                 'contact-phone': '+86 188 1077 6753 (吴总)',
                 'contact-address-title': '地址',
-                'contact-address': '深圳市南山区高新技术产业园南区粤兴一道18号香港理工大学产学研大楼',
+                'contact-address': '香港理工大学产学研大楼(深圳)',
                 'copyright': '©2025 立冷科技有限公司 版权所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意见反馈</a>'
             },
             'zh-TW': {
@@ -1183,7 +1251,7 @@
                 'contact-phone-title': '聯繫電話 / 微信',
                 'contact-phone': '+86 188 1077 6753 (吳總)',
                 'contact-address-title': '地址',
-                'contact-address': '深圳市南山區高新技術產業園南區粵興一道18號香港理工大學產學研大樓',
+                'contact-address': '香港理工大學產學研大樓(深圳)',
                 'copyright': '©2025 立冷科技有限公司 版權所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意見反饋</a>'
             },
             'en': {
@@ -1289,7 +1357,7 @@
                 'contact-phone-title': 'Phone / WeChat',
                 'contact-phone': '+86 188 1077 6753 (Dr. Wu)',
                 'contact-address-title': 'Address',
-                'contact-address': 'PolyU SZRI, No.18 Yuexing 1st Road, South Zone, Hi-Tech Industrial Park, Nanshan District, Shenzhen',
+                'contact-address': 'PolyU SZRI, No.18 Yuexing 1st Road, Shenzhen',
                 'copyright': '©2025 LiquiCool Technology Limited. All Rights Reserved | <a href="mailto:xuezhi.qin@liquicool.hk">Feedback</a>'
             }
         };
@@ -1400,6 +1468,15 @@
                     }
                 }
             }
+        }
+
+        function togglePositionDetails(element) {
+            const main = element;
+            const details = main.nextElementSibling;
+
+            // Toggle expanded class
+            main.classList.toggle('expanded');
+            details.classList.toggle('expanded');
         }
 
         function applyJob(jobTitle) {

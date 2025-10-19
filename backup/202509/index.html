@@ -58,237 +58,112 @@
 
         /* Header */
         header {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
+            background-color: #fff;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
             top: 0;
             z-index: 1000;
-            margin: 0;
-            padding: 0;
         }
 
         nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 0;
-            margin: 0;
         }
 
         .logo-header {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #0066cc;
-            padding: 20px 0;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 10px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .logo-header:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.15);
-            background: rgba(0, 102, 204, 0.05);
-        }
-
-        .logo-header:hover::before {
-            left: 100%;
-        }
-
-        .logo-header:active {
-            transform: translateY(0) scale(1);
         }
 
         .logo-header img {
+            max-height: 50px;
             width: auto;
-            height: 60px;
-            margin-right: 15px;
-            transition: all 0.3s ease;
-            aspect-ratio: auto;
         }
 
-        .logo-header:hover img {
-            transform: scale(1.05);
-        }
-
-        .nav-links {
+        .nav-right {
             display: flex;
-            list-style: none;
-            gap: 2rem;
+            align-items: center;
+            gap: 30px;
         }
 
-        .nav-links a {
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
             text-decoration: none;
-            color: #333;
+            font-size: 15px;
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding-bottom: 5px;
         }
 
-        .nav-links a::after {
+        .nav-menu a::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             width: 0;
             height: 2px;
-            background: #0066cc;
+            background: var(--primary-color);
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
 
-        .nav-links a:hover {
-            color: #0066cc;
-            background: rgba(0, 102, 204, 0.05);
+        .nav-menu a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
-        .nav-links a:hover::after {
-            width: 80%;
+        .nav-menu a:hover::after {
+            width: 100%;
         }
 
-        /* Language Dropdown */
-        .dropdown {
-            position: relative;
+        .language-switcher {
+            display: flex;
+            gap: 8px;
         }
 
-        .dropbtn {
-            background: #0066cc;
-            color: white;
+        .lang-btn {
             padding: 8px 16px;
-            border: none;
-            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background-color: #fff;
+            border-radius: 4px;
             cursor: pointer;
+            transition: all 0.3s ease;
             font-size: 14px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+            color: var(--text-light);
+            min-width: 60px;
+            text-align: center;
         }
 
-        .dropbtn:not(:hover) {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+        .lang-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
         }
 
-        .dropbtn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .dropbtn:hover {
-            background: #0052a3;
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
-        }
-
-        .dropbtn:hover::before {
-            left: 100%;
-        }
-
-        .dropbtn:active {
-            transform: translateY(0) scale(1.02);
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background: white;
-            min-width: 140px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            border-radius: 10px;
-            z-index: 1;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .dropdown-content.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        .dropdown-content button {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            width: 100%;
-            text-align: left;
-            border: none;
-            background: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-            font-size: 14px;
-        }
-
-        .dropdown-content button::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(0, 102, 204, 0.1), rgba(0, 102, 204, 0.05));
-            transition: width 0.3s ease;
-        }
-
-        .dropdown-content button:hover {
-            background: rgba(0, 102, 204, 0.08);
-            color: #0066cc;
-            transform: translateX(4px);
-        }
-
-        .dropdown-content button:hover::before {
-            width: 100%;
-        }
-
-        .dropdown-content button:first-child {
-            border-radius: 10px 10px 0 0;
-        }
-
-        .dropdown-content button:last-child {
-            border-radius: 0 0 10px 10px;
-        }
-
-        .show {
-            display: block;
+        .lang-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
 
         /* Hero Section */
         .hero {
             background: var(--gradient-primary);
             color: white;
-            padding: 180px 0 100px 0;
+            padding: 100px 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -638,29 +513,71 @@
 
         /* Footer */
         footer {
-            background: #333;
+            background-color: #2c3e50;
             color: white;
+            padding: 40px 0 20px;
             text-align: center;
-            padding: 2rem 0;
         }
 
-        footer a {
-            color: #0066cc;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* Responsive */
-        @media (max-width: 1000px) {
-            .nav-links {
-                display: none;
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+
+            .nav-right {
+                width: 100%;
+                margin-top: 15px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .language-switcher {
+                justify-content: center;
             }
 
             .hero {
-                padding: 250px 0 100px 0;
+                padding: 60px 20px;
             }
 
             .hero h1 {
@@ -671,21 +588,19 @@
                 font-size: 16px;
             }
 
-            .about-grid,
-            .benefits-grid,
-            .culture-values {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
             section {
                 padding: 50px 0;
             }
 
             .section-title {
                 font-size: 28px;
+            }
+
+            .about-grid,
+            .benefits-grid,
+            .culture-values {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
             .position-header {
@@ -698,19 +613,10 @@
                 flex-direction: column;
                 gap: 5px;
             }
-        }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-
-            .hero {
-                padding: 280px 0 60px 0;
-            }
-
-            section {
-                padding: 60px 0;
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
             }
         }
 
@@ -730,22 +636,21 @@
 <body>
     <!-- Header -->
     <header>
-        <nav class="container">
+        <nav>
             <a href="https://www.liquicool.hk" class="logo-header" aria-label="返回立冷科技首页">
-                <img src="../logo.svg" alt="立冷科技" width="60" height="60" decoding="async">
+                <img src="../logo.svg" alt="立冷科技" width="50" height="50">
             </a>
-            <ul class="nav-links" role="navigation" aria-label="主导航菜单">
-                <li><a href="#about" data-i18n="nav-about" aria-label="了解公司简介">关于我们</a></li>
-                <li><a href="#culture" data-i18n="nav-culture" aria-label="查看团队文化">团队文化</a></li>
-                <li><a href="#positions" data-i18n="nav-positions" aria-label="查看招聘职位">招聘职位</a></li>
-                <li><a href="#contact" data-i18n="nav-contact" aria-label="联系我们">联系我们</a></li>
-            </ul>
-            <div class="dropdown">
-                <button onclick="toggleDropdown()" onmouseenter="showDropdown()" onmouseleave="hideDropdown()" class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-label="选择语言">繁/简/EN ▼</button>
-                <div id="myDropdown" class="dropdown-content" role="menu" aria-labelledby="language-selector" onmouseenter="keepDropdownOpen()" onmouseleave="hideDropdown()">
-                    <button onclick="setLanguage('zh-CN')" role="menuitem">简体中文</button>
-                    <button onclick="setLanguage('zh-TW')" role="menuitem">繁體中文</button>
-                    <button onclick="setLanguage('en')" role="menuitem">English</button>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="#about" data-i18n="nav-about">关于我们</a></li>
+                    <li><a href="#culture" data-i18n="nav-culture">团队文化</a></li>
+                    <li><a href="#positions" data-i18n="nav-positions">招聘职位</a></li>
+                    <li><a href="#contact" data-i18n="nav-contact">联系我们</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button class="lang-btn" data-lang="zh-CN">简体</button>
+                    <button class="lang-btn" data-lang="zh-TW">繁體</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
                 </div>
             </div>
         </nav>
@@ -967,8 +872,14 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <p id="copyright" data-i18n="copyright">©2025 立冷科技有限公司 版权所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意见反馈</a></p>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://www.liquicool.hk" data-i18n="footer-home">首页</a>
+                <a href="#about" data-i18n="footer-about">关于我们</a>
+                <a href="#positions" data-i18n="footer-positions">招聘职位</a>
+                <a href="mailto:hr@liquicool.hk" data-i18n="footer-contact">联系我们</a>
+            </div>
+            <p class="copyright" data-i18n="copyright">© 2025 立冷科技有限公司 版权所有 | LiquiCool Technology Limited. All Rights Reserved</p>
         </div>
     </footer>
 
@@ -1057,7 +968,11 @@
                 'contact-phone': '+86 188 1077 6753 (吴总)',
                 'contact-address-title': '地址',
                 'contact-address': '深圳市南山区高新技术产业园南区粤兴一道18号香港理工大学产学研大楼',
-                'copyright': '©2025 立冷科技有限公司 版权所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意见反馈</a>'
+                'footer-home': '首页',
+                'footer-about': '关于我们',
+                'footer-positions': '招聘职位',
+                'footer-contact': '联系我们',
+                'copyright': '© 2025 立冷科技有限公司 版权所有 | LiquiCool Technology Limited. All Rights Reserved'
             },
             'zh-TW': {
                 'page-title': '加入我們 - 立冷科技 | LiquiCool Technology Careers',
@@ -1142,7 +1057,11 @@
                 'contact-phone': '+86 188 1077 6753 (吳總)',
                 'contact-address-title': '地址',
                 'contact-address': '深圳市南山區高新技術產業園南區粵興一道18號香港理工大學產學研大樓',
-                'copyright': '©2025 立冷科技有限公司 版權所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意見反饋</a>'
+                'footer-home': '首頁',
+                'footer-about': '關於我們',
+                'footer-positions': '招聘職位',
+                'footer-contact': '聯繫我們',
+                'copyright': '© 2025 立冷科技有限公司 版權所有 | LiquiCool Technology Limited. All Rights Reserved'
             },
             'en': {
                 'page-title': 'Join Us - LiquiCool Technology Careers',
@@ -1227,7 +1146,11 @@
                 'contact-phone': '+86 188 1077 6753 (Dr. Wu)',
                 'contact-address-title': 'Address',
                 'contact-address': 'PolyU SZRI, No.18 Yuexing 1st Road, South Zone, Hi-Tech Industrial Park, Nanshan District, Shenzhen',
-                'copyright': '©2025 LiquiCool Technology Limited. All Rights Reserved | <a href="mailto:xuezhi.qin@liquicool.hk">Feedback</a>'
+                'footer-home': 'Home',
+                'footer-about': 'About Us',
+                'footer-positions': 'Positions',
+                'footer-contact': 'Contact',
+                'copyright': '© 2025 LiquiCool Technology Limited. All Rights Reserved'
             }
         };
 
@@ -1246,7 +1169,7 @@
 
         let currentLang = localStorage.getItem('preferred-language') || getBrowserLanguage();
 
-        function setLanguage(lang) {
+        function switchLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('preferred-language', lang);
             document.documentElement.lang = lang;
@@ -1254,12 +1177,7 @@
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
-                    // Use innerHTML for copyright to allow HTML links
-                    if (key === 'copyright') {
-                        element.innerHTML = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
+                    element.textContent = translations[lang][key];
                 }
             });
 
@@ -1268,67 +1186,9 @@
             document.querySelector('meta[property="og:title"]').setAttribute('content', translations[lang]['og-title']);
             document.querySelector('meta[property="og:description"]').setAttribute('content', translations[lang]['og-description']);
 
-            document.getElementById("myDropdown").classList.remove("show");
-        }
-
-        let hoverTimer = null;
-        let leaveTimer = null;
-
-        function showDropdown() {
-            clearTimeout(leaveTimer);
-            hoverTimer = setTimeout(() => {
-                const dropdown = document.getElementById("myDropdown");
-                dropdown.style.display = "block";
-                setTimeout(() => {
-                    dropdown.classList.add("show");
-                }, 10);
-            }, 200);
-        }
-
-        function hideDropdown() {
-            clearTimeout(hoverTimer);
-            leaveTimer = setTimeout(() => {
-                const dropdown = document.getElementById("myDropdown");
-                dropdown.classList.remove("show");
-                setTimeout(() => {
-                    dropdown.style.display = "none";
-                }, 300);
-            }, 200);
-        }
-
-        function keepDropdownOpen() {
-            clearTimeout(leaveTimer);
-            clearTimeout(hoverTimer);
-        }
-
-        function toggleDropdown() {
-            const dropdown = document.getElementById("myDropdown");
-            if (dropdown.classList.contains("show")) {
-                dropdown.classList.remove("show");
-                setTimeout(() => {
-                    dropdown.style.display = "none";
-                }, 300);
-            } else {
-                dropdown.style.display = "block";
-                setTimeout(() => {
-                    dropdown.classList.add("show");
-                }, 10);
-            }
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                        setTimeout(() => {
-                            openDropdown.style.display = "none";
-                        }, 300);
-                    }
-                }
-            }
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
         }
 
         function applyJob(jobTitle) {
@@ -1339,7 +1199,13 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            setLanguage(currentLang);
+            switchLanguage(currentLang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    switchLanguage(btn.getAttribute('data-lang'));
+                });
+            });
 
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {

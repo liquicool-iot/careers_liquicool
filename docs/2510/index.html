@@ -839,7 +839,7 @@
                         <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
                         <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
                             <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
-                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n="job1-requirements">
+                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n-html="job1-requirements">
                                 <li>本科及以上学历，热能与动力工程、化工、暖通、制冷等相关专业</li>
                                 <li>3年以上液冷系统或服务器散热设计经验</li>
                                 <li>熟悉IDC机柜、CDU、冷板及配套系统</li>
@@ -867,7 +867,7 @@
                         <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
                         <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
                             <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
-                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n="job2-requirements">
+                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n-html="job2-requirements">
                                 <li>机械工程、热工程、流体力学或相关领域的本科及以上学历</li>
                                 <li>至少3年液冷实验测试经验</li>
                                 <li>熟练掌握流动/换热性能测试方法和可靠性检测工具</li>
@@ -895,7 +895,7 @@
                         <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
                         <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
                             <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
-                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n="job3-requirements">
+                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n-html="job3-requirements">
                                 <li>工程热物理、机械工程、流体力学或相关专业的硕士及以上学历</li>
                                 <li>扎实的流体力学、传热学基础</li>
                                 <li>精通ANSYS Fluent、OpenFOAM、Icepak、COMSOL或类似CFD工具</li>
@@ -924,7 +924,7 @@
                         <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color);" data-i18n="job-details">查看详细要求</summary>
                         <div style="margin-top: 10px; padding: 15px; background: var(--bg-light); border-radius: 6px;">
                             <p style="margin-bottom: 10px;"><strong data-i18n="job-requirements">任职要求：</strong></p>
-                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n="job4-requirements">
+                            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;" data-i18n-html="job4-requirements">
                                 <li>机械工程、材料工程、热工程或相关领域的本科及以上学历</li>
                                 <li>至少3年以上冷板生产或液冷设备制造从业经验</li>
                                 <li>熟悉冷板加工工艺链（如CNC加工、焊接、表面处理）</li>
@@ -1043,10 +1043,31 @@
                 'job4-desc': '负责构建并优化液冷板生产工艺链，评估产业链相关设备工艺特点、精度和成本，监控液冷板组装和制造过程，制定并实施生产文档和标准操作程序（SOP）。',
                 'job-details': '查看详细要求',
                 'job-requirements': '任职要求：',
-                'job1-requirements': '',
-                'job2-requirements': '',
-                'job3-requirements': '',
-                'job4-requirements': '',
+                'job1-requirements': `<li>本科及以上学历，热能与动力工程、化工、暖通、制冷等相关专业</li>
+<li>3年以上液冷系统或服务器散热设计经验</li>
+<li>熟悉IDC机柜、CDU、冷板及配套系统</li>
+<li>精通传热、热工、流体基本理论，能独立完成产品热性能、流动性能计算</li>
+<li>动手能力强，可独立进行测试系统搭建</li>
+<li>有数据中心液冷从业经验、具备跨学科协调能力者优先</li>`,
+                'job2-requirements': `<li>机械工程、热工程、流体力学或相关领域的本科及以上学历</li>
+<li>至少3年液冷实验测试经验</li>
+<li>熟练掌握流动/换热性能测试方法和可靠性检测工具</li>
+<li>具有芯片液冷项目经验者优先</li>
+<li>强实验动手能力和问题解决技能</li>
+<li>熟悉数值模拟工具（如ANSYS或COMSOL）</li>`,
+                'job3-requirements': `<li>工程热物理、机械工程、流体力学或相关专业的硕士及以上学历</li>
+<li>扎实的流体力学、传热学基础</li>
+<li>精通ANSYS Fluent、OpenFOAM、Icepak、COMSOL或类似CFD工具</li>
+<li>掌握有限体积法/有限元法数学原理</li>
+<li>至少3年以上CFD仿真相关工作经验</li>
+<li>具备流动换热实验能力及经验</li>
+<li>加分项：具备AI、仿生优化、响应面法等优化算法开发经验</li>`,
+                'job4-requirements': `<li>机械工程、材料工程、热工程或相关领域的本科及以上学历</li>
+<li>至少3年以上冷板生产或液冷设备制造从业经验</li>
+<li>熟悉冷板加工工艺链（如CNC加工、焊接、表面处理）</li>
+<li>熟练掌握工艺优化工具和软件</li>
+<li>具备强问题解决能力，能够进行故障诊断、工艺验证</li>
+<li>熟悉安全规范和环保要求</li>`,
                 'job-tag-fulltime': '全职',
                 'job-tag-intern': '实习',
                 'apply-btn': '立即申请',
@@ -1128,10 +1149,31 @@
                 'job4-desc': '負責構建並優化液冷板生產工藝鏈，評估產業鏈相關設備工藝特點、精度和成本，監控液冷板組裝和製造過程，制定並實施生產文檔和標準操作程序（SOP）。',
                 'job-details': '查看詳細要求',
                 'job-requirements': '任職要求：',
-                'job1-requirements': '',
-                'job2-requirements': '',
-                'job3-requirements': '',
-                'job4-requirements': '',
+                'job1-requirements': `<li>本科及以上學歷，熱能與動力工程、化工、暖通、製冷等相關專業</li>
+<li>3年以上液冷系統或服務器散熱設計經驗</li>
+<li>熟悉IDC機櫃、CDU、冷板及配套系統</li>
+<li>精通傳熱、熱工、流體基本理論，能獨立完成產品熱性能、流動性能計算</li>
+<li>動手能力強，可獨立進行測試系統搭建</li>
+<li>有數據中心液冷從業經驗、具備跨學科協調能力者優先</li>`,
+                'job2-requirements': `<li>機械工程、熱工程、流體力學或相關領域的本科及以上學歷</li>
+<li>至少3年液冷實驗測試經驗</li>
+<li>熟練掌握流動/換熱性能測試方法和可靠性檢測工具</li>
+<li>具有芯片液冷項目經驗者優先</li>
+<li>強實驗動手能力和問題解決技能</li>
+<li>熟悉數值模擬工具（如ANSYS或COMSOL）</li>`,
+                'job3-requirements': `<li>工程熱物理、機械工程、流體力學或相關專業的碩士及以上學歷</li>
+<li>紮實的流體力學、傳熱學基礎</li>
+<li>精通ANSYS Fluent、OpenFOAM、Icepak、COMSOL或類似CFD工具</li>
+<li>掌握有限體積法/有限元法數學原理</li>
+<li>至少3年以上CFD仿真相關工作經驗</li>
+<li>具備流動換熱實驗能力及經驗</li>
+<li>加分項：具備AI、仿生優化、響應面法等優化算法開發經驗</li>`,
+                'job4-requirements': `<li>機械工程、材料工程、熱工程或相關領域的本科及以上學歷</li>
+<li>至少3年以上冷板生產或液冷設備製造從業經驗</li>
+<li>熟悉冷板加工工藝鏈（如CNC加工、焊接、表面處理）</li>
+<li>熟練掌握工藝優化工具和軟件</li>
+<li>具備強問題解決能力，能夠進行故障診斷、工藝驗證</li>
+<li>熟悉安全規範和環保要求</li>`,
                 'job-tag-fulltime': '全職',
                 'job-tag-intern': '實習',
                 'apply-btn': '立即申請',
@@ -1213,10 +1255,31 @@
                 'job4-desc': 'Build and optimize liquid cooling plate production process chain, evaluate equipment characteristics, accuracy and costs, monitor assembly and manufacturing processes, develop and implement production documentation and SOPs.',
                 'job-details': 'View detailed requirements',
                 'job-requirements': 'Requirements:',
-                'job1-requirements': '',
-                'job2-requirements': '',
-                'job3-requirements': '',
-                'job4-requirements': '',
+                'job1-requirements': `<li>Bachelor's degree or above in Thermal and Power Engineering, Chemical Engineering, HVAC, Refrigeration or related fields</li>
+<li>3+ years of experience in liquid cooling systems or server thermal design</li>
+<li>Familiar with IDC racks, CDU, cold plates and supporting systems</li>
+<li>Proficient in heat transfer, thermodynamics, and fluid mechanics; capable of independently completing product thermal and flow performance calculations</li>
+<li>Strong hands-on ability, capable of independently building test systems</li>
+<li>Experience in data center liquid cooling and cross-disciplinary coordination skills preferred</li>`,
+                'job2-requirements': `<li>Bachelor's degree or above in Mechanical Engineering, Thermal Engineering, Fluid Mechanics or related fields</li>
+<li>At least 3 years of liquid cooling experimental testing experience</li>
+<li>Proficient in flow/heat transfer performance testing methods and reliability testing tools</li>
+<li>Experience in chip liquid cooling projects preferred</li>
+<li>Strong experimental hands-on ability and problem-solving skills</li>
+<li>Familiar with numerical simulation tools (such as ANSYS or COMSOL)</li>`,
+                'job3-requirements': `<li>Master's degree or above in Engineering Thermophysics, Mechanical Engineering, Fluid Mechanics or related fields</li>
+<li>Solid foundation in fluid mechanics and heat transfer</li>
+<li>Proficient in ANSYS Fluent, OpenFOAM, Icepak, COMSOL or similar CFD tools</li>
+<li>Understanding of finite volume method/finite element method mathematical principles</li>
+<li>At least 3 years of CFD simulation work experience</li>
+<li>Experience in flow and heat transfer experiments</li>
+<li>Bonus: Experience in AI, biomimetic optimization, response surface methodology and other optimization algorithms</li>`,
+                'job4-requirements': `<li>Bachelor's degree or above in Mechanical Engineering, Materials Engineering, Thermal Engineering or related fields</li>
+<li>At least 3 years of experience in cold plate production or liquid cooling equipment manufacturing</li>
+<li>Familiar with cold plate processing chain (such as CNC machining, welding, surface treatment)</li>
+<li>Proficient in process optimization tools and software</li>
+<li>Strong problem-solving ability, capable of troubleshooting and process verification</li>
+<li>Familiar with safety regulations and environmental requirements</li>`,
                 'job-tag-fulltime': 'Full-time',
                 'job-tag-intern': 'Internship',
                 'apply-btn': 'Apply Now',
@@ -1260,6 +1323,14 @@
                     } else {
                         element.textContent = translations[lang][key];
                     }
+                }
+            });
+
+            // Handle elements with data-i18n-html attribute
+            document.querySelectorAll('[data-i18n-html]').forEach(element => {
+                const key = element.getAttribute('data-i18n-html');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
                 }
             });
 

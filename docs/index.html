@@ -908,7 +908,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('液冷系统架构工程师')" data-i18n="apply-btn">立即申请</button>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job1-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
                 <div class="position-card">
@@ -941,7 +941,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('热设计工程师')" data-i18n="apply-btn">立即申请</button>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job2-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
                 <div class="position-card">
@@ -975,7 +975,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('热仿真工程师')" data-i18n="apply-btn">立即申请</button>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job3-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
                 <div class="position-card">
@@ -1008,7 +1008,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('工艺工程师')" data-i18n="apply-btn">立即申请</button>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job4-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
                 <div class="position-card">
@@ -1042,7 +1042,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('液冷解决方案经理')" data-i18n="apply-btn">立即申请</button>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job5-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
                 <div class="position-card">
@@ -1073,7 +1073,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('研发助理')" data-i18n="apply-btn">立即申请</button>
+                    <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job6-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
             </div>
         </div>
@@ -1238,7 +1238,9 @@
                 'contact-phone': '+86 188 1077 6753 (吴总)',
                 'contact-address-title': '地址',
                 'contact-address': '香港理工大学产学研大楼(深圳)',
-                'copyright': '©2025 立冷科技有限公司 版权所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意见反馈</a>'
+                'copyright': '©2025 立冷科技有限公司 版权所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意见反馈</a>',
+                'email-subject-template': '应聘申请 - {jobTitle}',
+                'email-body-template': '您好，\n\n我对"{jobTitle}"职位很感兴趣，现附上我的简历供您查阅。\n\n期待您的回复。\n\n此致\n敬礼'
             },
             'zh-TW': {
                 'page-title': '加入我們 - 立冷科技 | LiquiCool Technology Careers',
@@ -1365,7 +1367,9 @@
                 'contact-phone': '+86 188 1077 6753 (吳總)',
                 'contact-address-title': '地址',
                 'contact-address': '香港理工大學產學研大樓(深圳)',
-                'copyright': '©2025 立冷科技有限公司 版權所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意見反饋</a>'
+                'copyright': '©2025 立冷科技有限公司 版權所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意見反饋</a>',
+                'email-subject-template': '應聘申請 - {jobTitle}',
+                'email-body-template': '您好，\n\n我對"{jobTitle}"職位很感興趣，現附上我的簡歷供您查閱。\n\n期待您的回覆。\n\n此致\n敬禮'
             },
             'en': {
                 'page-title': 'Join Us - LiquiCool Technology Careers',
@@ -1492,7 +1496,9 @@
                 'contact-phone': '+86 188 1077 6753 (Dr. Wu)',
                 'contact-address-title': 'Address',
                 'contact-address': 'PolyU SZRI, No.18 Yuexing 1st Road, Shenzhen',
-                'copyright': '©2025 LiquiCool Technology Limited. All Rights Reserved | <a href="mailto:xuezhi.qin@liquicool.hk">Feedback</a>'
+                'copyright': '©2025 LiquiCool Technology Limited. All Rights Reserved | <a href="mailto:xuezhi.qin@liquicool.hk">Feedback</a>',
+                'email-subject-template': 'Job Application - {jobTitle}',
+                'email-body-template': 'Dear Hiring Manager,\n\nI am writing to express my strong interest in the "{jobTitle}" position. Please find my resume attached for your review.\n\nI look forward to hearing from you.\n\nBest regards'
             }
         };
 
@@ -1613,10 +1619,20 @@
             details.classList.toggle('expanded');
         }
 
-        function applyJob(jobTitle) {
+        function applyJob(jobTitleKey) {
             const email = 'hr@liquicool.hk';
-            const subject = encodeURIComponent(`应聘申请 - ${jobTitle}`);
-            const body = encodeURIComponent(`您好，\n\n我对"${jobTitle}"职位很感兴趣，现附上我的简历供您查阅。\n\n期待您的回复。\n\n此致\n敬礼`);
+
+            // Get the job title in current language
+            const jobTitle = translations[currentLang][jobTitleKey] || jobTitleKey;
+
+            // Get email templates in current language
+            const subjectTemplate = translations[currentLang]['email-subject-template'];
+            const bodyTemplate = translations[currentLang]['email-body-template'];
+
+            // Replace {jobTitle} placeholder with actual job title
+            const subject = encodeURIComponent(subjectTemplate.replace('{jobTitle}', jobTitle));
+            const body = encodeURIComponent(bodyTemplate.replace('{jobTitle}', jobTitle));
+
             window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
         }
 

@@ -707,6 +707,111 @@
             text-decoration: underline;
         }
 
+        /* Custom Modal */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .custom-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .modal-message {
+            font-size: 16px;
+            color: var(--text-light);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .modal-email {
+            font-size: 18px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            word-break: break-all;
+        }
+
+        .modal-close-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 1000px) {
             .nav-links {
@@ -1111,6 +1216,17 @@
         </div>
     </footer>
 
+    <!-- Custom Modal -->
+    <div id="applyModal" class="custom-modal">
+        <div class="modal-content">
+            <div class="modal-icon">✉️</div>
+            <h3 class="modal-title" data-i18n="modal-title">发送简历</h3>
+            <p class="modal-message" data-i18n="modal-message">请将您的简历发送至以下邮箱：</p>
+            <div class="modal-email">hr@liquicool.hk</div>
+            <button class="modal-close-btn" onclick="closeModal()" data-i18n="modal-close-btn">知道了</button>
+        </div>
+    </div>
+
     <script>
         const translations = {
             'zh-CN': {
@@ -1240,7 +1356,10 @@
                 'contact-address': '香港理工大学产学研大楼(深圳)',
                 'copyright': '©2025 立冷科技有限公司 版权所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意见反馈</a>',
                 'email-subject-template': '应聘申请 - {jobTitle}',
-                'email-body-template': '您好，\n\n我对"{jobTitle}"职位很感兴趣，现附上我的简历供您查阅。\n\n期待您的回复。\n\n此致\n敬礼'
+                'email-body-template': '您好，\n\n我对"{jobTitle}"职位很感兴趣，现附上我的简历供您查阅。\n\n期待您的回复。\n\n此致\n敬礼',
+                'modal-title': '发送简历',
+                'modal-message': '请将您的简历发送至以下邮箱：',
+                'modal-close-btn': '知道了'
             },
             'zh-TW': {
                 'page-title': '加入我們 - 立冷科技 | LiquiCool Technology Careers',
@@ -1369,7 +1488,10 @@
                 'contact-address': '香港理工大學產學研大樓(深圳)',
                 'copyright': '©2025 立冷科技有限公司 版權所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意見反饋</a>',
                 'email-subject-template': '應聘申請 - {jobTitle}',
-                'email-body-template': '您好，\n\n我對"{jobTitle}"職位很感興趣，現附上我的簡歷供您查閱。\n\n期待您的回覆。\n\n此致\n敬禮'
+                'email-body-template': '您好，\n\n我對"{jobTitle}"職位很感興趣，現附上我的簡歷供您查閱。\n\n期待您的回覆。\n\n此致\n敬禮',
+                'modal-title': '發送簡歷',
+                'modal-message': '請將您的簡歷發送至以下郵箱：',
+                'modal-close-btn': '知道了'
             },
             'en': {
                 'page-title': 'Join Us - LiquiCool Technology Careers',
@@ -1498,7 +1620,10 @@
                 'contact-address': 'PolyU SZRI, No.18 Yuexing 1st Road, Shenzhen',
                 'copyright': '©2025 LiquiCool Technology Limited. All Rights Reserved | <a href="mailto:xuezhi.qin@liquicool.hk">Feedback</a>',
                 'email-subject-template': 'Job Application - {jobTitle}',
-                'email-body-template': 'Dear Hiring Manager,\n\nI am writing to express my strong interest in the "{jobTitle}" position. Please find my resume attached for your review.\n\nI look forward to hearing from you.\n\nBest regards'
+                'email-body-template': 'Dear Hiring Manager,\n\nI am writing to express my strong interest in the "{jobTitle}" position. Please find my resume attached for your review.\n\nI look forward to hearing from you.\n\nBest regards',
+                'modal-title': 'Send Your Resume',
+                'modal-message': 'Please send your resume to the following email:',
+                'modal-close-btn': 'Got it'
             }
         };
 
@@ -1619,8 +1744,21 @@
             details.classList.toggle('expanded');
         }
 
+        function showModal() {
+            const modal = document.getElementById('applyModal');
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('applyModal');
+            modal.classList.remove('show');
+        }
+
         function applyJob(jobTitleKey) {
             const email = 'hr@liquicool.hk';
+
+            // Show custom modal
+            showModal();
 
             // Get the job title in current language
             const jobTitle = translations[currentLang][jobTitleKey] || jobTitleKey;
@@ -1633,8 +1771,17 @@
             const subject = encodeURIComponent(subjectTemplate.replace('{jobTitle}', jobTitle));
             const body = encodeURIComponent(bodyTemplate.replace('{jobTitle}', jobTitle));
 
+            // Open email client
             window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
         }
+
+        // Close modal when clicking outside of it
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('applyModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
 
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage(currentLang);

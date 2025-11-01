@@ -516,8 +516,26 @@
 
         /* Positions Section */
         .positions-list {
-            max-width: 900px;
+            max-width: 1800px;
             margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* 在中等屏幕上隐藏导航栏 */
+        @media (max-width: 1199px) {
+            .positions-nav {
+                display: none;
+            }
+
+            .positions-list {
+                padding: 0 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .positions-list {
+                padding: 0 20px;
+            }
         }
 
         .position-card {
@@ -599,10 +617,29 @@
             margin-bottom: 15px;
         }
 
-        .position-meta span::before {
-            content: '• ';
-            color: var(--primary-color);
-            font-weight: bold;
+        .position-meta span:nth-child(1)::before {
+            content: '📍 ';
+            font-size: 16px;
+            margin-right: 6px;
+        }
+
+        .position-meta span:nth-child(2)::before {
+            content: '💼 ';
+            font-size: 16px;
+            margin-right: 6px;
+        }
+
+        .position-meta span:nth-child(3)::before {
+            content: '💰 ';
+            font-size: 16px;
+            margin-right: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .position-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
         }
 
         .position-desc {
@@ -726,6 +763,364 @@
             justify-content: center;
         }
 
+        /* Job Details Modal */
+        .job-details-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .job-details-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .job-details-modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .job-details-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 32px;
+            font-weight: 300;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .job-details-close:hover {
+            color: var(--text-color);
+        }
+
+        .modal-job-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0 0 20px 0;
+            padding-right: 40px;
+        }
+
+        .modal-job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .modal-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        .modal-meta-icon {
+            font-size: 18px;
+        }
+
+        .modal-job-section {
+            margin-bottom: 30px;
+        }
+
+        .modal-section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0 0 15px 0;
+        }
+
+        .modal-job-desc {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .modal-job-requirements {
+            margin: 0;
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+        .modal-job-requirements li {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .modal-apply-btn {
+            width: 100%;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .modal-apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Custom scrollbar for modal */
+        .job-details-modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .job-details-modal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+            margin: 16px 0;
+        }
+
+        .job-details-modal-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        .job-details-modal-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Positions Navigation */
+        .positions-nav {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            padding-right: 15px;
+            box-shadow: var(--shadow-md);
+            max-width: 250px;
+            width: 250px;
+            max-height: 70vh;
+            overflow: visible;
+            z-index: 100;
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, left 0.3s ease;
+            left: -270px;
+            box-sizing: border-box;
+        }
+
+        .positions-nav.visible {
+            opacity: 1;
+            visibility: visible;
+            left: 20px;
+        }
+
+        .positions-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .positions-nav-header h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .positions-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            transition: all 0.3s ease;
+            max-height: 1000px;
+            opacity: 1;
+            overflow-x: hidden;
+        }
+
+        .positions-nav-list li {
+            margin-bottom: 4px;
+        }
+
+        .nav-job-link {
+            display: block;
+            padding: 10px 12px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 1.4;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+        .nav-job-link:hover {
+            background: var(--bg-light);
+            color: var(--text-color);
+            border-left-color: var(--primary-color);
+        }
+
+        .nav-job-link.active {
+            background: linear-gradient(135deg, #e6f2ff 0%, #f0f7ff 100%);
+            color: var(--primary-color);
+            font-weight: 600;
+            border-left-color: var(--primary-color);
+        }
+
+        /* 自定义滚动条 */
+        .positions-nav-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .positions-nav-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .positions-nav-content::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 3px;
+        }
+
+        .positions-nav-content::-webkit-scrollbar-thumb:hover {
+            background: #ccc;
+        }
+
+        /* 导航栏切换按钮 */
+        .nav-toggle-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            padding: 4px;
+            border-radius: 4px;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .positions-nav:not(.collapsed) .nav-toggle-btn:hover {
+            background: var(--bg-light);
+        }
+
+        /* 收起状态下的按钮样式 */
+        .positions-nav.collapsed .nav-toggle-btn {
+            background: white;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            width: 40px;
+            height: 60px;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .positions-nav.collapsed .nav-toggle-btn:hover {
+            background: var(--bg-light);
+        }
+
+        .positions-nav.collapsed .positions-nav-header {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+            justify-content: flex-end;
+            padding: 10px;
+        }
+
+        .nav-toggle-icon {
+            font-size: 12px;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        /* 收回状态 */
+        .positions-nav.collapsed {
+            width: auto;
+            padding: 0;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .positions-nav.collapsed .positions-nav-content {
+            background: transparent;
+        }
+
+        .positions-nav.collapsed .positions-nav-header h4 {
+            display: none;
+        }
+
+        .positions-nav.collapsed .positions-nav-list {
+            display: none;
+        }
+
+        .positions-nav.collapsed .nav-toggle-icon {
+            transform: rotate(180deg);
+            font-size: 16px;
+        }
+
+        .positions-nav-content {
+            transition: all 0.3s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-height: calc(70vh - 40px);
+            width: 100%;
+        }
+
+
+        .positions-nav-header h4 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
         .modal-content {
             background: white;
             border-radius: 16px;
@@ -818,6 +1213,10 @@
                 display: none;
             }
 
+            .positions-nav {
+                display: none;
+            }
+
             .hero {
                 padding: 250px 0 100px 0;
             }
@@ -851,11 +1250,6 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
-            }
-
-            .position-meta {
-                flex-direction: column;
-                gap: 5px;
             }
         }
 
@@ -982,9 +1376,32 @@
             <div class="deadline-notice" style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; margin-bottom: 30px; border-radius: 8px;">
                 <p style="margin: 0; color: #856404; font-size: 16px;"><strong data-i18n="deadline-notice">📢 职位投递截止日期：11月30日，招满即止</strong></p>
             </div>
+
+            <!-- Floating Navigation -->
+            <aside class="positions-nav" id="positionsNav">
+                <div class="positions-nav-content" id="positionsNavContent">
+                    <div class="positions-nav-header">
+                        <h4 data-i18n="nav-positions-quick">快速导航</h4>
+                        <button class="nav-toggle-btn" id="navToggleBtn" onclick="toggleNav()" title="展开/收起导航">
+                            <span class="nav-toggle-icon">◀</span>
+                        </button>
+                    </div>
+                    <ul class="positions-nav-list">
+                        <li><a href="#job7-card" data-i18n="job7-title" class="nav-job-link active">首席执行官（CEO）</a></li>
+                        <li><a href="#job8-card" data-i18n="job8-title" class="nav-job-link">两相液冷系统研发主管</a></li>
+                        <li><a href="#job1-card" data-i18n="job1-title" class="nav-job-link">液冷系统架构工程师</a></li>
+                        <li><a href="#job2-card" data-i18n="job2-title" class="nav-job-link">热设计工程师</a></li>
+                        <li><a href="#job3-card" data-i18n="job3-title" class="nav-job-link">热仿真工程师</a></li>
+                        <li><a href="#job4-card" data-i18n="job4-title" class="nav-job-link">工艺工程师</a></li>
+                        <li><a href="#job5-card" data-i18n="job5-title" class="nav-job-link">液冷解决方案经理（产品经理方向）</a></li>
+                        <li><a href="#job6-card" data-i18n="job6-title" class="nav-job-link">研发助理</a></li>
+                    </ul>
+                </div>
+            </aside>
+
             <div class="positions-list">
-                <div class="position-card">
-                    <div class="position-main" onclick="togglePositionDetails(this)">
+                <div class="position-card" id="job7-card">
+                    <div class="position-main" onclick="togglePositionDetails('job7')">
                         <div class="position-header">
                             <h3 class="position-title" data-i18n="job7-title">首席执行官（CEO）</h3>
                             <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
@@ -1015,8 +1432,8 @@
                     <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job7-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
-                <div class="position-card">
-                    <div class="position-main" onclick="togglePositionDetails(this)">
+                <div class="position-card" id="job8-card">
+                    <div class="position-main" onclick="togglePositionDetails('job8')">
                         <div class="position-header">
                             <h3 class="position-title" data-i18n="job8-title">两相液冷系统研发主管</h3>
                             <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
@@ -1047,8 +1464,8 @@
                     <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job8-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
-                <div class="position-card">
-                    <div class="position-main" onclick="togglePositionDetails(this)">
+                <div class="position-card" id="job1-card">
+                    <div class="position-main" onclick="togglePositionDetails('job1')">
                         <div class="position-header">
                             <h3 class="position-title" data-i18n="job1-title">液冷系统架构工程师</h3>
                             <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
@@ -1080,8 +1497,8 @@
                     <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job1-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
-                <div class="position-card">
-                    <div class="position-main" onclick="togglePositionDetails(this)">
+                <div class="position-card" id="job2-card">
+                    <div class="position-main" onclick="togglePositionDetails('job2')">
                         <div class="position-header">
                             <h3 class="position-title" data-i18n="job2-title">热设计工程师</h3>
                             <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
@@ -1113,8 +1530,8 @@
                     <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job2-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
-                <div class="position-card">
-                    <div class="position-main" onclick="togglePositionDetails(this)">
+                <div class="position-card" id="job3-card">
+                    <div class="position-main" onclick="togglePositionDetails('job3')">
                         <div class="position-header">
                             <h3 class="position-title" data-i18n="job3-title">热仿真工程师</h3>
                             <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
@@ -1147,8 +1564,8 @@
                     <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job3-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
-                <div class="position-card">
-                    <div class="position-main" onclick="togglePositionDetails(this)">
+                <div class="position-card" id="job4-card">
+                    <div class="position-main" onclick="togglePositionDetails('job4')">
                         <div class="position-header">
                             <h3 class="position-title" data-i18n="job4-title">工艺工程师</h3>
                             <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
@@ -1180,8 +1597,8 @@
                     <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job4-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
-                <div class="position-card">
-                    <div class="position-main" onclick="togglePositionDetails(this)">
+                <div class="position-card" id="job5-card">
+                    <div class="position-main" onclick="togglePositionDetails('job5')">
                         <div class="position-header">
                             <h3 class="position-title" data-i18n="job5-title">液冷解决方案经理（产品经理方向）</h3>
                             <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
@@ -1214,8 +1631,8 @@
                     <button class="apply-btn" onclick="event.stopPropagation(); applyJob('job5-title')" data-i18n="apply-btn">立即申请</button>
                 </div>
 
-                <div class="position-card">
-                    <div class="position-main" onclick="togglePositionDetails(this)">
+                <div class="position-card" id="job6-card">
+                    <div class="position-main" onclick="togglePositionDetails('job6')">
                         <div class="position-header">
                             <h3 class="position-title" data-i18n="job6-title">研发助理</h3>
                             <span class="position-tag" data-i18n="job-tag-fulltime">全职</span>
@@ -1291,6 +1708,37 @@
         </div>
     </div>
 
+    <!-- Job Details Modal -->
+    <div id="jobDetailsModal" class="job-details-modal">
+        <div class="job-details-modal-content">
+            <span class="job-details-close" onclick="closeJobDetailsModal()">&times;</span>
+            <h2 id="modalJobTitle" class="modal-job-title"></h2>
+            <div class="modal-job-meta">
+                <div class="modal-meta-item">
+                    <span class="modal-meta-icon">📍</span>
+                    <span id="modalJobLocation"></span>
+                </div>
+                <div class="modal-meta-item">
+                    <span class="modal-meta-icon">💼</span>
+                    <span id="modalJobExp"></span>
+                </div>
+                <div class="modal-meta-item">
+                    <span class="modal-meta-icon">💰</span>
+                    <span id="modalJobSalary"></span>
+                </div>
+            </div>
+            <div class="modal-job-section">
+                <h3 class="modal-section-title" data-i18n="job-desc-title">职位描述</h3>
+                <p id="modalJobDesc" class="modal-job-desc"></p>
+            </div>
+            <div class="modal-job-section">
+                <h3 class="modal-section-title" data-i18n="job-requirements">任职要求</h3>
+                <ul id="modalJobRequirements" class="modal-job-requirements"></ul>
+            </div>
+            <button class="modal-apply-btn" onclick="applyJobFromModal()" data-i18n="apply-btn">立即申请</button>
+        </div>
+    </div>
+
     <script>
         const translations = {
             'zh-CN': {
@@ -1339,6 +1787,7 @@
                 'benefit6-desc': '定期团建活动，节日福利，舒适的办公环境',
                 'positions-title': '热招职位',
                 'positions-subtitle': '寻找与我们志同道合的你',
+                'nav-positions-quick': '快速导航',
                 'deadline-notice': '📢 职位投递截止日期：11月30日，招满即止',
                 'job1-title': '液冷系统架构工程师',
                 'job1-location': '香港/深圳',
@@ -1361,6 +1810,7 @@
                 'job4-salary': '年薪20-50W',
                 'job4-desc': '负责构建并优化液冷板生产工艺链，评估产业链相关设备工艺特点、精度和成本，监控液冷板组装和制造过程，制定并实施生产文档和标准操作程序（SOP）。',
                 'job-details': '查看详细要求',
+                'job-desc-title': '职位描述',
                 'job-requirements': '任职要求：',
                 'job1-requirements': `<li>本科及以上学历，热能与动力工程、化工、暖通、制冷等相关专业</li>
 <li>3年以上液冷系统或服务器散热设计经验</li>
@@ -1491,6 +1941,7 @@
                 'benefit6-desc': '定期團建活動，節日福利，舒適的辦公環境',
                 'positions-title': '熱招職位',
                 'positions-subtitle': '尋找與我們志同道合的你',
+                'nav-positions-quick': '快速導航',
                 'deadline-notice': '📢 職位投遞截止日期：11月30日，招滿即止',
                 'job1-title': '液冷系統架構工程師',
                 'job1-location': '香港/深圳',
@@ -1513,6 +1964,7 @@
                 'job4-salary': '年薪20-50W',
                 'job4-desc': '負責構建並優化液冷板生產工藝鏈，評估產業鏈相關設備工藝特點、精度和成本，監控液冷板組裝和製造過程，制定並實施生產文檔和標準操作程序（SOP）。',
                 'job-details': '查看詳細要求',
+                'job-desc-title': '職位描述',
                 'job-requirements': '任職要求：',
                 'job1-requirements': `<li>本科及以上學歷，熱能與動力工程、化工、暖通、製冷等相關專業</li>
 <li>3年以上液冷系統或服務器散熱設計經驗</li>
@@ -1643,6 +2095,7 @@
                 'benefit6-desc': 'Regular team building activities, holiday benefits, comfortable office environment',
                 'positions-title': 'Open Positions',
                 'positions-subtitle': 'Looking for talented individuals who share our vision',
+                'nav-positions-quick': 'Quick Navigation',
                 'deadline-notice': '📢 Application deadline: November 30th, positions filled on a rolling basis',
                 'job1-title': 'Liquid Cooling System Architecture Engineer',
                 'job1-location': 'Hong Kong/Shenzhen',
@@ -1665,6 +2118,7 @@
                 'job4-salary': 'Annual salary RMB 200K-500K',
                 'job4-desc': 'Build and optimize liquid cooling plate production process chain, evaluate equipment characteristics, accuracy and costs, monitor assembly and manufacturing processes, develop and implement production documentation and SOPs.',
                 'job-details': 'View detailed requirements',
+                'job-desc-title': 'Job Description',
                 'job-requirements': 'Requirements:',
                 'job1-requirements': `<li>Bachelor's degree or above in Thermal and Power Engineering, Chemical Engineering, HVAC, Refrigeration or related fields</li>
 <li>3+ years of experience in liquid cooling systems or server thermal design</li>
@@ -1859,13 +2313,25 @@
             }
         }
 
-        function togglePositionDetails(element) {
-            const main = element;
-            const details = main.nextElementSibling;
+        function togglePositionDetails(jobKey) {
+            const card = document.getElementById(jobKey + '-card');
+            if (!card) return;
+
+            const main = card.querySelector('.position-main');
+            const details = card.querySelector('.position-details');
+
+            if (!main || !details) return;
 
             // Toggle expanded class
-            main.classList.toggle('expanded');
-            details.classList.toggle('expanded');
+            const isExpanded = details.classList.contains('expanded');
+
+            if (isExpanded) {
+                main.classList.remove('expanded');
+                details.classList.remove('expanded');
+            } else {
+                main.classList.add('expanded');
+                details.classList.add('expanded');
+            }
         }
 
         function showModal() {
@@ -1905,7 +2371,114 @@
             if (event.target === modal) {
                 closeModal();
             }
+
+            const jobDetailsModal = document.getElementById('jobDetailsModal');
+            if (event.target === jobDetailsModal) {
+                closeJobDetailsModal();
+            }
         });
+
+        // Positions Navigation
+        let isManuallyExpanded = false; // 追踪是否手动展开
+
+        function toggleNav() {
+            const positionsNav = document.getElementById('positionsNav');
+            if (!positionsNav) return;
+
+            positionsNav.classList.toggle('collapsed');
+
+            // 如果是展开状态，标记为手动展开
+            if (!positionsNav.classList.contains('collapsed')) {
+                isManuallyExpanded = true;
+            } else {
+                isManuallyExpanded = false;
+            }
+        }
+
+        function checkNavOverlap() {
+            const positionsNav = document.getElementById('positionsNav');
+            const positionCards = document.querySelectorAll('.position-card');
+
+            if (!positionsNav || positionCards.length === 0) return false;
+
+            // 如果导航栏已经收回或不可见，不需要检查
+            if (!positionsNav.classList.contains('visible') || positionsNav.classList.contains('collapsed')) {
+                return false;
+            }
+
+            const navRect = positionsNav.getBoundingClientRect();
+
+            // 检查是否与任何职位卡片重叠
+            for (const card of positionCards) {
+                const cardRect = card.getBoundingClientRect();
+
+                // 检查水平和垂直重叠
+                const isOverlapping = !(
+                    navRect.right < cardRect.left ||
+                    navRect.left > cardRect.right ||
+                    navRect.bottom < cardRect.top ||
+                    navRect.top > cardRect.bottom
+                );
+
+                if (isOverlapping) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        function updatePositionsNav() {
+            const positionsSection = document.getElementById('positions');
+            const positionsNav = document.getElementById('positionsNav');
+
+            if (!positionsSection || !positionsNav) return;
+
+            const sectionRect = positionsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const header = document.querySelector('header');
+            const headerHeight = header ? header.offsetHeight : 0;
+
+            // 仅在整个视口都被热招职位区域占据时显示导航栏
+            const isFullScreen = sectionRect.top <= headerHeight && sectionRect.bottom >= windowHeight;
+
+            // 显示或隐藏导航
+            if (isFullScreen) {
+                positionsNav.classList.add('visible');
+
+                // 检查是否遮挡选项卡，如果遮挡且不是手动展开状态，则自动收回
+                if (!isManuallyExpanded && checkNavOverlap()) {
+                    positionsNav.classList.add('collapsed');
+                }
+            } else {
+                positionsNav.classList.remove('visible');
+                // 离开职位区域时重置手动展开状态
+                isManuallyExpanded = false;
+            }
+        }
+
+        function updateActiveNavLink() {
+            const positionCards = document.querySelectorAll('.position-card');
+            const navLinks = document.querySelectorAll('.nav-job-link');
+
+            let currentActive = null;
+            const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+            positionCards.forEach((card, index) => {
+                const cardTop = card.offsetTop;
+                const cardBottom = cardTop + card.offsetHeight;
+
+                if (scrollPosition >= cardTop && scrollPosition < cardBottom) {
+                    currentActive = index;
+                }
+            });
+
+            if (currentActive !== null) {
+                navLinks.forEach((link, index) => {
+                    link.classList.toggle('active', index === currentActive);
+                });
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage(currentLang);
@@ -1914,15 +2487,58 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+
                     if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
+                        // 计算偏移量（header高度 + 额外间距）
+                        const header = document.querySelector('header');
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        const offset = headerHeight + 20; // header高度 + 20px额外间距
+
+                        // 计算目标位置
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+                        // 平滑滚动到目标位置
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
                         });
+
+                        // Update active state immediately on click
+                        if (this.classList.contains('nav-job-link')) {
+                            document.querySelectorAll('.nav-job-link').forEach(link => {
+                                link.classList.remove('active');
+                            });
+                            this.classList.add('active');
+                        }
                     }
                 });
             });
+
+            // Scroll event listener for navigation highlighting
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    updatePositionsNav();
+                    updateActiveNavLink();
+                }, 50);
+            });
+
+            // Window resize event listener
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updatePositionsNav();
+                    updateActiveNavLink();
+                }, 100);
+            });
+
+            // Initial update
+            updatePositionsNav();
+            updateActiveNavLink();
         });
     </script>
 </body>

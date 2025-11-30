@@ -1914,6 +1914,7 @@
                 'contact-address': '香港科学园',
                 'contact-address2': '香港理工大学产学研大楼(深圳)',
                 'copyright': '©2025 立冷科技有限公司 版权所有 | <a href="mailto:xuezhi.qin@liquicool.hk">意见反馈</a>',
+                'icp-info': '粤ICP备2025499996号',
                 'email-subject-template': '应聘申请 - {jobTitle}',
                 'email-body-template': '您好，\n\n我对"{jobTitle}"职位很感兴趣，现附上我的简历供您查阅。\n\n期待您的回复。\n\n此致\n敬礼',
                 'modal-title': '发送简历',
@@ -2582,6 +2583,23 @@
             // Initial update
             updatePositionsNav();
             updateActiveNavLink();
+            
+            // Add ICP record information
+            const footer = document.querySelector('footer');
+            if (footer) {
+                // Check if ICP element already exists
+                let icpElement = document.querySelector('.icp-record');
+                if (!icpElement) {
+                    icpElement = document.createElement('div');
+                    icpElement.className = 'icp-record';
+                    icpElement.style.cssText = 'text-align: center; padding: 10px 0; font-size: 14px; color: white;';
+                    footer.appendChild(icpElement);
+                }
+                
+                // Set ICP record link with white color
+                const icpText = translations[currentLang]['icp-info'] || translations[currentLang]['icp-info-en'] || '粤ICP备2025499996号';
+                icpElement.innerHTML = `<a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none;">${icpText}</a>`;
+            }
         });
     </script>
 </body>
